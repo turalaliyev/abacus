@@ -1,3 +1,5 @@
+import type { I18nText, Locale } from '../lib/i18nContent'
+
 export type MediaAsset = {
   id: string
   key: string
@@ -22,11 +24,14 @@ export type SiteSettings = {
   hero_subtitle: string
   about_title: string
   about_paragraphs: string[]
+  academy_title: string
+  academy_description: string
 }
 
 export type NavItemRow = {
   id: string
   label: string
+  label_i18n?: I18nText
   href: string
   parent_id: string | null
   sort_order: number
@@ -88,6 +93,33 @@ export type BlogPost = {
   post_type: 'xeberler' | 'qanunvericilik'
   cover_image_url: string
   published_at: string
+}
+
+export type AcademyQuizTopic =
+  | 'audit'
+  | 'tax'
+  | 'accounting'
+  | 'hr'
+  | 'consulting'
+  | 'legal'
+  | 'procurement'
+
+export type AcademyQuizQuestion = {
+  id: string
+  topic: AcademyQuizTopic
+  question: string
+  options: string[]
+  correct_index: number
+}
+
+export type AcademyQuizQuestionRow = {
+  id: string
+  topic: AcademyQuizTopic
+  question_i18n: I18nText
+  options_i18n: Partial<Record<Locale, string[]>>
+  correct_index: number
+  is_active: boolean
+  sort_order: number
 }
 
 export type AcademyCourse = {

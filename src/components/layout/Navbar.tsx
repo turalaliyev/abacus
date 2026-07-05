@@ -2,18 +2,22 @@ import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronDown, Menu, X } from "lucide-react"
-import { useMediaAssets, useNavItems, useSiteSettings } from "../../hooks/useSiteData"
+import { useLocalizedNavItems, useLocalizedSiteSettings } from "../../hooks/useLocalizedData"
+import { useMediaAssets } from "../../hooks/useSiteData"
 import { getMediaUrl } from "../../lib/media"
 import { Button } from "../ui/Button"
 import { NavbarSkeleton } from "../ui/Skeleton"
+import { LanguageSwitcher } from "../ui/LanguageSwitcher"
+import { useTranslation } from "react-i18next"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const location = useLocation()
 
-  const { data: settings, isLoading: settingsLoading } = useSiteSettings()
-  const { data: navItems, isLoading: navLoading } = useNavItems()
+  const { t } = useTranslation()
+  const { data: settings, isLoading: settingsLoading } = useLocalizedSiteSettings()
+  const { data: navItems, isLoading: navLoading } = useLocalizedNavItems()
   const { data: media } = useMediaAssets()
 
   const logoUrl = getMediaUrl(media, "logo")
@@ -24,10 +28,10 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2">
+      <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 lg:gap-4 lg:px-8">
+        <Link to="/" className="flex shrink-0 items-center gap-2">
           {logoUrl ? (
-            <img src={logoUrl} alt="Abacus Audit" className="h-10 w-auto" />
+            <img src={logoUrl} alt="Abacus Audit" className="h-9 w-auto lg:h-10" />
           ) : (
             <>
               <span className="grid h-10 w-10 place-items-center rounded-lg bg-navy-900 font-bold text-gold-400">
@@ -40,20 +44,20 @@ export function Navbar() {
           )}
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
           {navItems.map((item) => {
             const hasChildren = item.children && item.children.length > 0
             const active = location.pathname === item.href
             return (
               <li
                 key={item.label}
-                className="relative"
+                className="relative shrink-0"
                 onMouseEnter={() => hasChildren && setOpenDropdown(item.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-0.5 whitespace-nowrap rounded-md px-2 py-2 text-xs font-medium transition-colors xl:gap-1 xl:px-2.5 xl:text-sm ${
                     active ? "text-gold-600" : "text-navy-900 hover:text-gold-600"
                   }`}
                 >
@@ -87,13 +91,16 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden lg:block">
-          <Button to="/elaqe">Təklif al</Button>
+        <div className="hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
+          <LanguageSwitcher />
+          <Button to="/elaqe" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5 xl:text-sm">
+            {t("common.getOffer")}
+          </Button>
         </div>
 
         <button
           type="button"
-          className="rounded-md p-2 text-navy-900 lg:hidden"
+          className="shrink-0 rounded-md p-2 text-navy-900 lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Menyu"
         >
@@ -157,9 +164,10 @@ export function Navbar() {
                   </li>
                 )
               })}
-              <li className="pt-2">
+              <li className="pt-2 flex flex-col gap-3">
+                <LanguageSwitcher className="w-full justify-center" />
                 <Button to="/elaqe" className="w-full">
-                  Təklif al
+                  {t("common.getOffer")}
                 </Button>
               </li>
             </ul>

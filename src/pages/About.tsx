@@ -1,19 +1,21 @@
+import { useTranslation } from "react-i18next"
 import { PageHeader } from "../components/ui/PageHeader"
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../components/ui/AnimatedSection"
 import { TeamMemberCard } from "../components/ui/TeamMemberCard"
 import { TeamGridSkeleton, TextBlockSkeleton } from "../components/ui/Skeleton"
-import { useSiteSettings, useTeamMembers } from "../hooks/useSiteData"
+import { useLocalizedSiteSettings, useLocalizedTeamMembers } from "../hooks/useLocalizedData"
 import { CtaSection } from "../components/sections/CtaSection"
 
 export function About() {
-  const { data: settings, isLoading: settingsLoading } = useSiteSettings()
-  const { data: team, isLoading: teamLoading } = useTeamMembers()
+  const { t } = useTranslation()
+  const { data: settings, isLoading: settingsLoading } = useLocalizedSiteSettings()
+  const { data: team, isLoading: teamLoading } = useLocalizedTeamMembers()
 
   return (
     <>
       <PageHeader
-        title="Haqqımızda"
-        subtitle="Maliyyə, audit, hüquq, vergi və konsaltinq sahələrində peşəkar tərəfdaşınız"
+        title={t("pages.about.title")}
+        subtitle={t("pages.about.subtitle")}
       />
 
       <section className="bg-white py-20 lg:py-28">
@@ -34,7 +36,7 @@ export function About() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <AnimatedSection className="mb-12 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-navy-900 md:text-4xl">
-              Komandamız
+              {t("sections.teamTitle")}
             </h2>
             <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gold-500" />
           </AnimatedSection>

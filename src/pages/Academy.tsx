@@ -1,59 +1,65 @@
-import { GraduationCap, Clock, ArrowRight } from "lucide-react"
-import { PageHeader } from "../components/ui/PageHeader"
-import { StaggerContainer, StaggerItem } from "../components/ui/AnimatedSection"
-import { Button } from "../components/ui/Button"
-import { ServicesGridSkeleton } from "../components/ui/Skeleton"
-import { useAcademyCourses } from "../hooks/useSiteData"
-import { ACADEMY_TRACK_LABELS, type AcademyCourse } from "../types/database"
+import { useTranslation } from 'react-i18next'
+import { PageHeader } from '../components/ui/PageHeader'
+import { AnimatedSection } from '../components/ui/AnimatedSection'
+import { AcademyLottie } from '../components/ui/AcademyLottie'
+import { AcademyQuiz } from '../components/academy/AcademyQuiz'
+import { RichText } from '../components/ui/RichText'
+import { Skeleton } from '../components/ui/Skeleton'
+import {
+  useLocalizedAcademyQuizQuestions,
+  useLocalizedSiteSettings,
+} from '../hooks/useLocalizedData'
 
-type AcademyProps = {
-  variant?: AcademyCourse["track"]
-}
+export function Academy() {
+  const { t } = useTranslation()
+  const { data: settings, isLoading: settingsLoading } = useLocalizedSiteSettings()
+  const { data: allQuestions, isLoading: quizLoading } = useLocalizedAcademyQuizQuestions()
 
-export function Academy({ variant = "maliyye" }: AcademyProps) {
-  const { data: courses, isLoading } = useAcademyCourses(variant)
-  const meta = ACADEMY_TRACK_LABELS[variant]
+  const title = settings?.academy_title ?? t('academy.title')
+  const description =
+    settings?.academy_description || `<p>${t('academy.fallbackDescription')}</p>`
 
   return (
     <>
-      <PageHeader title={meta.title} subtitle={meta.subtitle} breadcrumb={`Akademiya · ${meta.title}`} />
+      <PageHeader
+        title={title}
+        subtitle={t('academy.subtitle')}
+        breadcrumb={`${t('footer.company')} · ${title}`}
+      />
       <section className="bg-white py-20 lg:py-28">
-        <div className="mx-auto max-w-5xl px-4 lg:px-8">
-          {isLoading ? (
-            <ServicesGridSkeleton count={3} />
-          ) : !courses?.length ? (
-            <p className="text-center text-slate-500">Kurslar tezliklə əlavə olunacaq.</p>
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          {settingsLoading ? (
+            <div className="space-y-4">
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-full" />
+              <Skeleton className="h-5 w-3/4" />
+            </div>
           ) : (
-            <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {courses.map((course) => (
-                <StaggerItem key={course.id}>
-                  <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-gold-300 hover:bg-white hover:shadow-lg">
-                    {course.image_url ? (
-                      <img
-                        src={course.image_url}
-                        alt={course.name}
-                        className="mb-4 h-32 w-full rounded-xl object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-navy-900 text-gold-400">
-                        <GraduationCap className="h-6 w-6" />
-                      </div>
-                    )}
-                    <h3 className="text-lg font-semibold text-navy-900">{course.name}</h3>
-                    <div className="mt-3 flex items-center gap-2 text-sm text-slate-500">
-                      <Clock className="h-4 w-4" />
-                      {course.duration}
-                    </div>
-                    <div className="mt-5">
-                      <Button to="/elaqe" variant="ghost" className="border border-navy-900/15">
-                        Qeydiyyat <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <div className="grid items-start gap-10 lg:grid-cols-3 lg:gap-12">
+              <AnimatedSection className="lg:col-span-2">
+                <RichText content={description} className="text-slate-600 leading-relaxed" />
+              </AnimatedSection>
+
+              <AnimatedSection delay={0.1} className="lg:col-span-1">
+                <div className="lg:sticky lg:top-28">
+                  <AcademyLottie />
+                </div>
+              </AnimatedSection>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="border-t border-slate-100 bg-slate-50/50 py-20 lg:py-28">
+        <div className="mx-auto max-w-3xl px-4 lg:px-8">
+          {quizLoading ? (
+            <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-8">
+              <Skeleton className="mx-auto h-8 w-48" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="mx-auto mt-6 h-10 w-36" />
+            </div>
+          ) : (
+            <AcademyQuiz questions={allQuestions ?? []} />
           )}
         </div>
       </section>

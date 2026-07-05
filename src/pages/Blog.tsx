@@ -1,8 +1,10 @@
 import { CalendarDays, ArrowUpRight } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import { PageHeader } from "../components/ui/PageHeader"
 import { StaggerContainer, StaggerItem } from "../components/ui/AnimatedSection"
 import { BlogGridSkeleton } from "../components/ui/Skeleton"
-import { useBlogPosts, useMediaAssets } from "../hooks/useSiteData"
+import { useMediaAssets } from "../hooks/useSiteData"
+import { useLocalizedBlogPosts } from "../hooks/useLocalizedData"
 import { formatBlogDate, getMediaUrl } from "../lib/media"
 
 type BlogProps = {
@@ -10,27 +12,24 @@ type BlogProps = {
 }
 
 export function Blog({ variant = "xeberler" }: BlogProps) {
+  const { t } = useTranslation()
   const isNews = variant === "xeberler"
-  const { data: posts, isLoading } = useBlogPosts(variant)
+  const { data: posts, isLoading } = useLocalizedBlogPosts(variant)
   const { data: media } = useMediaAssets()
   const defaultCover = getMediaUrl(media, "blog_default")
 
   return (
     <>
       <PageHeader
-        title={isNews ? "Xəbərlər" : "Qanunvericilik"}
-        subtitle={
-          isNews
-            ? "Şirkətimizdən və sahə üzrə ən son yeniliklər"
-            : "Qanunvericilik dəyişiklikləri və hüquqi izahlar"
-        }
+        title={isNews ? t("pages.blogNews.title") : t("pages.blogLaw.title")}
+        subtitle={isNews ? t("pages.blogNews.subtitle") : t("pages.blogLaw.subtitle")}
       />
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {isLoading ? (
             <BlogGridSkeleton />
           ) : !posts?.length ? (
-            <p className="text-center text-slate-500">Hələlik məqalə yoxdur.</p>
+            <p className="text-center text-slate-500">{t("common.noPosts")}</p>
           ) : (
             <StaggerContainer className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => {
@@ -61,7 +60,7 @@ export function Blog({ variant = "xeberler" }: BlogProps) {
                         </h3>
                         <p className="flex-1 text-sm leading-relaxed text-slate-600">{post.excerpt}</p>
                         <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-gold-600">
-                          Ətraflı oxu <ArrowUpRight className="h-4 w-4" />
+                          {t("common.readMore")} <ArrowUpRight className="h-4 w-4" />
                         </span>
                       </div>
                     </article>

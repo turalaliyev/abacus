@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Layout } from "./components/layout/Layout"
 import { Home } from "./pages/Home"
 import { About } from "./pages/About"
@@ -26,10 +26,8 @@ function App() {
           <Route path="/bloq" element={<Blog variant="xeberler" />} />
           <Route path="/bloq/xeberler" element={<Blog variant="xeberler" />} />
           <Route path="/bloq/qanunvericilik" element={<Blog variant="qanunvericilik" />} />
-          <Route path="/akademiya" element={<Academy variant="maliyye" />} />
-          <Route path="/akademiya/maliyye" element={<Academy variant="maliyye" />} />
-          <Route path="/akademiya/insan-resurslari" element={<Academy variant="insan-resurslari" />} />
-          <Route path="/akademiya/satin-alma" element={<Academy variant="satin-alma" />} />
+          <Route path="/akademiya" element={<Academy />} />
+          <Route path="/akademiya/*" element={<Navigate to="/akademiya" replace />} />
           <Route path="/kalkulyator" element={<Calculator />} />
           <Route path="/elaqe" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

@@ -2,8 +2,10 @@ import { useQuery } from '@tanstack/react-query'
 import { getSupabase, isSupabaseConfigured } from '../lib/supabase'
 import { queryKeys } from '../lib/queryClient'
 import { buildNavTree } from '../lib/nav'
+import type { Locale } from '../lib/i18nContent'
 import type {
   AcademyCourse,
+  AcademyQuizQuestionRow,
   BlogPost,
   MediaMap,
   NavItem,
@@ -42,6 +44,9 @@ function defaultSiteSettings(): SiteSettings {
     hero_subtitle: `${siteConfig.name} — audit, vergi, mühasibatlıq və konsaltinq sahələrində peşəkarlığa, şəffaflığa və dəqiqliyə əsaslanan xidmətlər təqdim edir.`,
     about_title: aboutContent.title,
     about_paragraphs: [...aboutContent.paragraphs],
+    academy_title: 'Abacus Akademiya',
+    academy_description:
+      '<p>Abacus Akademiya audit, vergi, mühasibatlıq, insan resursları və dövlət satınalmaları sahələrində praktiki biliklər qazandıran peşəkar təlim proqramları təqdim edir.</p>',
   }
 }
 
@@ -73,14 +78,17 @@ export function useSiteSettings() {
         about_paragraphs: Array.isArray(data.about_paragraphs)
           ? (data.about_paragraphs as string[])
           : [],
+        academy_paragraphs: Array.isArray(data.academy_paragraphs)
+          ? (data.academy_paragraphs as string[])
+          : [],
       }
     },
   })
 }
 
-export function useNavItems() {
+export function useNavItems(locale: Locale = 'az') {
   return useQuery({
-    queryKey: queryKeys.navItems,
+    queryKey: [...queryKeys.navItems, locale],
     queryFn: async (): Promise<NavItem[]> => {
       if (!isSupabaseConfigured) {
         return defaultNav.map((item) => ({
@@ -96,7 +104,7 @@ export function useNavItems() {
         .select('*')
         .order('sort_order')
       if (error) throw error
-      return buildNavTree(data ?? [])
+      return buildNavTree(data ?? [], locale)
     },
   })
 }
@@ -226,6 +234,22 @@ export function useBlogPosts(postType?: 'xeberler' | 'qanunvericilik') {
       const { data, error } = await query
       if (error) throw error
       return data ?? []
+    },
+  })
+}
+
+export function useAcademyQuizQuestions() {
+  return useQuery({
+    queryKey: queryKeys.academyQuizQuestions,
+    queryFn: async (): Promise<AcademyQuizQuestionRow[]> => {
+      if (!isSupabaseConfigured) return []
+      const { data, error } = await getSupabase()
+        .from('academy_quiz_questions')
+        .select('*')
+        .eq('is_active', true)
+        .order('sort_order')
+      if (error) throw error
+      return (data ?? []) as AcademyQuizQuestionRow[]
     },
   })
 }

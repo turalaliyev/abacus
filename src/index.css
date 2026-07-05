@@ -22,3 +22,58 @@
     font-family: var(--font-sans);
   }
 }
+
+/* CMS rich text (service descriptions from admin editor) */
+.rich-text p {
+  margin-bottom: 1rem;
+}
+
+.rich-text p:last-child {
+  margin-bottom: 0;
+}
+
+.rich-text h2 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0c2340;
+}
+
+.rich-text h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0c2340;
+}
+
+.rich-text ul,
+.rich-text ol {
+  margin: 0.75rem 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.rich-text ul {
+  list-style: disc;
+}
+
+.rich-text ol {
+  list-style: decimal;
+}
+
+.rich-text li {
+  margin-bottom: 0.35rem;
+}
+
+.rich-text a {
+  color: #a8861f;
+  text-decoration: underline;
+}
+
+.rich-text strong {
+  font-weight: 600;
+  color: #0c2340;
+}
+
+.rich-text em {
+  font-style: italic;
+}

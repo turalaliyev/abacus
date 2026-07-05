@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next"
 import { Hero } from "../components/sections/Hero"
 import { StatsBar } from "../components/sections/StatsBar"
 import { ServicesGrid } from "../components/sections/ServicesGrid"
@@ -6,11 +7,13 @@ import { CtaSection } from "../components/sections/CtaSection"
 import { AnimatedSection } from "../components/ui/AnimatedSection"
 import { Button } from "../components/ui/Button"
 import { Skeleton, TextBlockSkeleton } from "../components/ui/Skeleton"
-import { useMediaAssets, useSiteSettings } from "../hooks/useSiteData"
+import { useMediaAssets } from "../hooks/useSiteData"
+import { useLocalizedSiteSettings } from "../hooks/useLocalizedData"
 import { getMediaUrl } from "../lib/media"
 
 export function Home() {
-  const { data: settings, isLoading } = useSiteSettings()
+  const { t } = useTranslation()
+  const { data: settings, isLoading } = useLocalizedSiteSettings()
   const { data: media } = useMediaAssets()
   const aboutImage = getMediaUrl(media, "about_image")
 
@@ -31,7 +34,7 @@ export function Home() {
             <>
               <AnimatedSection>
                 <span className="text-sm font-semibold uppercase tracking-wider text-gold-600">
-                  Haqqımızda
+                  {t("sections.aboutLabel")}
                 </span>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy-900 md:text-4xl">
                   {settings.about_title}
@@ -45,7 +48,7 @@ export function Home() {
                 </div>
                 <div className="mt-8">
                   <Button to="/haqqimizda" variant="ghost" className="border border-navy-900/15">
-                    Ətraflı məlumat
+                    {t("common.learnMore")}
                   </Button>
                 </div>
               </AnimatedSection>
@@ -67,7 +70,7 @@ export function Home() {
                   </div>
                   <div className="absolute -bottom-6 -left-6 rounded-xl bg-gold-500 px-6 py-4 shadow-xl">
                     <div className="text-3xl font-bold text-navy-950">15+</div>
-                    <div className="text-sm font-medium text-navy-900">illik təcrübə</div>
+                    <div className="text-sm font-medium text-navy-900">{t("common.yearsExperience")}</div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -76,7 +79,7 @@ export function Home() {
         </div>
       </section>
 
-      <PartnersSection />
+      <PartnersSection limit={4} />
       <CtaSection />
     </>
   )

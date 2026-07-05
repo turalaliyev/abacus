@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "motion/react"
 import { StatsSkeleton } from "../ui/Skeleton"
-import { useStats } from "../../hooks/useSiteData"
+import { useLocalizedStats } from "../../hooks/useLocalizedData"
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -32,7 +32,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export function StatsBar() {
-  const { data: stats, isLoading } = useStats()
+  const { data: stats, isLoading } = useLocalizedStats()
 
   if (isLoading || !stats) return <StatsSkeleton />
 

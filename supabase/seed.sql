@@ -62,9 +62,6 @@ INSERT INTO nav_items (id, label, href, parent_id, sort_order) VALUES
   ('a0000001-0000-4000-8000-000000000041', 'Xəbərlər', '/bloq/xeberler', 'a0000001-0000-4000-8000-000000000004', 1),
   ('a0000001-0000-4000-8000-000000000042', 'Qanunvericilik', '/bloq/qanunvericilik', 'a0000001-0000-4000-8000-000000000004', 2),
   ('a0000001-0000-4000-8000-000000000005', 'Akademiya', '/akademiya', NULL, 5),
-  ('a0000001-0000-4000-8000-000000000051', 'Maliyyə və Mühasibatlıq', '/akademiya/maliyye', 'a0000001-0000-4000-8000-000000000005', 1),
-  ('a0000001-0000-4000-8000-000000000052', 'İnsan Resursları', '/akademiya/insan-resurslari', 'a0000001-0000-4000-8000-000000000005', 2),
-  ('a0000001-0000-4000-8000-000000000053', 'Dövlət satınalmaları', '/akademiya/satin-alma', 'a0000001-0000-4000-8000-000000000005', 3),
   ('a0000001-0000-4000-8000-000000000006', 'Kalkulyator', '/kalkulyator', NULL, 6),
   ('a0000001-0000-4000-8000-000000000007', 'Əlaqə', '/elaqe', NULL, 7);
 

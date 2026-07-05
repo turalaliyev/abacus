@@ -1,12 +1,15 @@
 import { motion } from "motion/react"
 import { ArrowRight } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import { Button } from "../ui/Button"
 import { HeroSkeleton } from "../ui/Skeleton"
-import { useMediaAssets, useSiteSettings } from "../../hooks/useSiteData"
+import { useMediaAssets } from "../../hooks/useSiteData"
+import { useLocalizedSiteSettings } from "../../hooks/useLocalizedData"
 import { getMediaUrl } from "../../lib/media"
 
 export function Hero() {
-  const { data: settings, isLoading } = useSiteSettings()
+  const { t } = useTranslation()
+  const { data: settings, isLoading } = useLocalizedSiteSettings()
   const { data: media } = useMediaAssets()
 
   if (isLoading || !settings) return <HeroSkeleton />
@@ -49,23 +52,17 @@ export function Hero() {
             </span>
           )}
           <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
-            {settings.hero_title.includes("güvən") ? (
-              <>
-                Maliyyənizə <span className="text-gold-400">güvən</span> və dəqiqlik gətiririk
-              </>
-            ) : (
-              settings.hero_title
-            )}
+            {settings.hero_title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
             {settings.hero_subtitle}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button to="/elaqe">
-              Bizimlə əlaqə <ArrowRight className="h-4 w-4" />
+              {t("common.contactUs")} <ArrowRight className="h-4 w-4" />
             </Button>
             <Button to="/xidmetler/audit" variant="outline">
-              Xidmətlərimiz
+              {t("footer.services")}
             </Button>
           </div>
         </motion.div>

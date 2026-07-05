@@ -26,4 +26,5 @@ export const queryKeys = {
   whyUsItems: ['why_us_items'] as const,
   blogPosts: (type?: string) => ['blog_posts', type] as const,
   academyCourses: (track?: string) => ['academy_courses', track] as const,
+  academyQuizQuestions: ['academy_quiz_questions'] as const,
 }

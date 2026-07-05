@@ -1,18 +1,20 @@
 import { CheckCircle2 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import { PageHeader } from "../components/ui/PageHeader"
 import { StaggerContainer, StaggerItem } from "../components/ui/AnimatedSection"
 import { WhyUsGridSkeleton } from "../components/ui/Skeleton"
-import { useWhyUsItems } from "../hooks/useSiteData"
+import { useLocalizedWhyUsItems } from "../hooks/useLocalizedData"
 import { CtaSection } from "../components/sections/CtaSection"
 
 export function WhyUs() {
-  const { data: items, isLoading } = useWhyUsItems()
+  const { t } = useTranslation()
+  const { data: items, isLoading } = useLocalizedWhyUsItems()
 
   return (
     <>
       <PageHeader
-        title="Niyə biz"
-        subtitle="Bizi fərqləndirən dəyərlər və yanaşma"
+        title={t("pages.whyUs.title")}
+        subtitle={t("pages.whyUs.subtitle")}
       />
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">

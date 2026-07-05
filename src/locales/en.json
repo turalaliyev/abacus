@@ -1,0 +1,164 @@
+{
+  "common": {
+    "home": "Home",
+    "contactUs": "Contact us",
+    "getOffer": "Get a quote",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "register": "Register",
+    "send": "Send",
+    "backHome": "Back to home",
+    "loading": "Loading...",
+    "noPosts": "No articles yet.",
+    "noCourses": "Courses will be added soon.",
+    "yearsExperience": "years of experience"
+  },
+  "footer": {
+    "services": "Services",
+    "company": "Company",
+    "contact": "Contact",
+    "taglineExtra": "Professional solutions in finance, audit, law, tax and consulting.",
+    "rights": "All rights reserved.",
+    "links": {
+      "about": "About us",
+      "whyUs": "Why us",
+      "partners": "Our partners",
+      "news": "News",
+      "calculator": "Calculator"
+    }
+  },
+  "sections": {
+    "servicesTitle": "Our services",
+    "servicesSubtitle": "Complete solutions for all your financial and legal needs",
+    "partnersTitle": "Our partners",
+    "partnersSubtitle": "Government agencies and private companies that trust us",
+    "showAllPartners": "Show all partners",
+    "teamTitle": "Our team",
+    "aboutLabel": "About us",
+    "ctaTitle": "Looking for professional support for your project?",
+    "ctaSubtitle": "Our team is ready to contact you and offer a solution tailored to your needs.",
+    "ctaButton": "Get a free consultation"
+  },
+  "pages": {
+    "about": {
+      "title": "About us",
+      "subtitle": "Your professional partner in finance, audit, law, tax and consulting"
+    },
+    "whyUs": {
+      "title": "Why us",
+      "subtitle": "The values and approach that set us apart"
+    },
+    "partners": {
+      "title": "Our partners",
+      "subtitle": "Government agencies and private companies that trust us"
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Complete solutions for all your financial and legal needs"
+    },
+    "blogNews": {
+      "title": "News",
+      "subtitle": "Latest updates from our company and the industry"
+    },
+    "blogLaw": {
+      "title": "Legislation",
+      "subtitle": "Legislative changes and legal explanations"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Get in touch with us for your questions",
+      "writeUs": "Write to us",
+      "formHint": "Fill out the form and our team will contact you shortly.",
+      "success": "Your request has been received. We will contact you soon.",
+      "name": "Full name",
+      "phone": "Phone",
+      "email": "Email",
+      "message": "Your message",
+      "address": "Address"
+    },
+    "calculator": {
+      "title": "Salary deduction calculator",
+      "subtitle": "2026 salary calculation. From NET to GROSS and from GROSS to NET."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "subtitle": "The page you are looking for does not exist or has been moved."
+    },
+    "serviceDetail": {
+      "whyChoose": "Why choose this service?",
+      "apply": "Apply for this service",
+      "otherServices": "Other services"
+    }
+  },
+  "academy": {
+    "title": "Abacus Academy",
+    "subtitle": "Professional training programs and knowledge test",
+    "fallbackDescription": "Abacus Academy offers practical training in audit, tax, accounting, and related fields.",
+    "quiz": {
+      "title": "Knowledge test",
+      "description": "A 20-question test covering audit, tax, accounting, HR, consulting, legal, and procurement topics.",
+      "questionCount": "The test includes {{count}} random questions",
+      "start": "Start test",
+      "question": "Question",
+      "of": "of",
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "See results",
+      "unavailable": "Quiz questions are not available at the moment.",
+      "topics": {
+        "audit": "Audit",
+        "tax": "Tax",
+        "accounting": "Accounting",
+        "hr": "Human resources",
+        "consulting": "Consulting",
+        "legal": "Legal",
+        "procurement": "Procurement"
+      },
+      "results": {
+        "title": "Your results",
+        "score": "Score",
+        "grade": {
+          "excellent": "Excellent",
+          "good": "Good",
+          "fair": "Fair",
+          "needsImprovement": "Needs improvement"
+        },
+        "contactTitle": "Interested in our Academy programs?",
+        "contactText": "Contact us for course schedules and registration.",
+        "retake": "Retake test"
+      }
+    }
+  },
+  "calculator": {
+    "grossToNet": "GROSS → NET",
+    "netToGross": "NET → GROSS",
+    "sectorPrivate": "Non-oil & gas and private sector",
+    "sectorState": "State and oil & gas sector",
+    "jobMain": "Primary workplace",
+    "jobExtra": "Additional workplace",
+    "grossLabel": "Calculated salary (GROSS)",
+    "netLabel": "Net salary (NET)",
+    "unionFee": "Trade union membership fee",
+    "taxBenefit": "Tax benefit",
+    "calculate": "Calculate",
+    "employee": "Employee",
+    "employer": "Employer",
+    "rows": {
+      "gross": "Calculated salary (GROSS)",
+      "taxable": "Taxable amount",
+      "incomeTax": "Income tax",
+      "dsmf": "SSPF contributions",
+      "unemployment": "Unemployment insurance",
+      "medical": "Mandatory medical insurance",
+      "union": "Trade union fee",
+      "net": "Net payable amount (NET)",
+      "superGross": "Super GROSS"
+    }
+  },
+  "benefits": {
+    "professional": "Certified professional specialists",
+    "compliance": "Full legal compliance",
+    "transparent": "Efficient and transparent process",
+    "personal": "Personal approach and ongoing support"
+  }
+}

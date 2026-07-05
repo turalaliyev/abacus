@@ -8,6 +8,7 @@ type ButtonProps = {
   variant?: "primary" | "outline" | "ghost"
   className?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
 const variants = {
@@ -25,6 +26,7 @@ export function Button({
   variant = "primary",
   className = "",
   onClick,
+  disabled,
 }: ButtonProps) {
   const base =
     "inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300"
@@ -48,7 +50,7 @@ export function Button({
   }
 
   return (
-    <button type="button" className={classes} onClick={onClick}>
+    <button type="button" className={classes} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   )

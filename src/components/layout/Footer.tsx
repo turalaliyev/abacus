@@ -1,17 +1,33 @@
 import { Link } from "react-router-dom"
 import { Facebook, Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
-import { useMediaAssets, useNavItems, useSiteSettings } from "../../hooks/useSiteData"
+import { useTranslation } from "react-i18next"
+import { useMediaAssets } from "../../hooks/useSiteData"
+import { useLocalizedNavItems, useLocalizedSiteSettings } from "../../hooks/useLocalizedData"
 import { getMediaUrl } from "../../lib/media"
 import { Skeleton } from "../ui/Skeleton"
 
+function findServicesNav(navItems: { href: string; children?: { href: string; label: string }[] }[]) {
+  return navItems.find(
+    (i) => i.href === "/xidmetler" || i.children?.some((c) => c.href.startsWith("/xidmetler/")),
+  )
+}
+
 export function Footer() {
-  const { data: settings, isLoading } = useSiteSettings()
-  const { data: navItems } = useNavItems()
+  const { t } = useTranslation()
+  const { data: settings, isLoading } = useLocalizedSiteSettings()
+  const { data: navItems } = useLocalizedNavItems()
   const { data: media } = useMediaAssets()
 
   const logoUrl = getMediaUrl(media, "logo")
-  const serviceItems = navItems?.find((i) => i.label === "Xidmətlər")
-  const services = serviceItems?.children?.slice(0, 6) ?? []
+  const services = findServicesNav(navItems ?? [])?.children?.slice(0, 6) ?? []
+
+  const companyLinks = [
+    { href: "/haqqimizda", label: t("footer.links.about") },
+    { href: "/niye-biz", label: t("footer.links.whyUs") },
+    { href: "/partnyorlar", label: t("footer.links.partners") },
+    { href: "/bloq/xeberler", label: t("footer.links.news") },
+    { href: "/kalkulyator", label: t("footer.links.calculator") },
+  ]
 
   if (isLoading || !settings) {
     return (
@@ -43,8 +59,7 @@ export function Footer() {
             )}
           </div>
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
-            {settings.tagline}. Maliyyə, audit, hüquq, vergi və konsaltinq sahələrində peşəkar
-            həllər.
+            {settings.tagline}. {t("footer.taglineExtra")}
           </p>
           <div className="mt-5 flex gap-3">
             <a href={settings.facebook_url} aria-label="Facebook" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
@@ -64,7 +79,7 @@ export function Footer() {
 
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-            Xidmətlər
+            {t("footer.services")}
           </h3>
           <ul className="space-y-2 text-sm">
             {services.map((s) => (
@@ -79,20 +94,22 @@ export function Footer() {
 
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-            Şirkət
+            {t("footer.company")}
           </h3>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/haqqimizda" className="text-slate-400 transition-colors hover:text-gold-400">Haqqımızda</Link></li>
-            <li><Link to="/niye-biz" className="text-slate-400 transition-colors hover:text-gold-400">Niyə biz</Link></li>
-            <li><Link to="/partnyorlar" className="text-slate-400 transition-colors hover:text-gold-400">Partnyorlarımız</Link></li>
-            <li><Link to="/bloq/xeberler" className="text-slate-400 transition-colors hover:text-gold-400">Xəbərlər</Link></li>
-            <li><Link to="/kalkulyator" className="text-slate-400 transition-colors hover:text-gold-400">Kalkulyator</Link></li>
+            {companyLinks.map((link) => (
+              <li key={link.href}>
+                <Link to={link.href} className="text-slate-400 transition-colors hover:text-gold-400">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-            Əlaqə
+            {t("footer.contact")}
           </h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3">
@@ -112,7 +129,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-5 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} Abacus Audit. Bütün hüquqlar qorunur.
+        © {new Date().getFullYear()} Abacus Audit. {t("footer.rights")}
       </div>
     </footer>
   )

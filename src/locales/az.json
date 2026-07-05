@@ -1,0 +1,164 @@
+{
+  "common": {
+    "home": "Əsas",
+    "contactUs": "Bizimlə əlaqə",
+    "getOffer": "Təklif al",
+    "learnMore": "Ətraflı məlumat",
+    "readMore": "Ətraflı oxu",
+    "register": "Qeydiyyat",
+    "send": "Göndər",
+    "backHome": "Əsas səhifəyə qayıt",
+    "loading": "Yüklənir...",
+    "noPosts": "Hələlik məqalə yoxdur.",
+    "noCourses": "Kurslar tezliklə əlavə olunacaq.",
+    "yearsExperience": "illik təcrübə"
+  },
+  "footer": {
+    "services": "Xidmətlər",
+    "company": "Şirkət",
+    "contact": "Əlaqə",
+    "taglineExtra": "Maliyyə, audit, hüquq, vergi və konsaltinq sahələrində peşəkar həllər.",
+    "rights": "Bütün hüquqlar qorunur.",
+    "links": {
+      "about": "Haqqımızda",
+      "whyUs": "Niyə biz",
+      "partners": "Partnyorlarımız",
+      "news": "Xəbərlər",
+      "calculator": "Kalkulyator"
+    }
+  },
+  "sections": {
+    "servicesTitle": "Göstərdiyimiz xidmətlər",
+    "servicesSubtitle": "Müəssisənizin bütün maliyyə və hüquqi ehtiyacları üçün tam həllər",
+    "partnersTitle": "Partnyorlarımız",
+    "partnersSubtitle": "Bizə etibar edən dövlət qurumları və özəl şirkətlər",
+    "showAllPartners": "Bütün partnyorları göstər",
+    "teamTitle": "Komandamız",
+    "aboutLabel": "Haqqımızda",
+    "ctaTitle": "Layihəniz üçün peşəkar dəstək axtarırsınız?",
+    "ctaSubtitle": "Komandamız sizinlə əlaqə saxlamağa və ehtiyaclarınıza uyğun həll təklif etməyə hazırdır.",
+    "ctaButton": "Pulsuz konsultasiya al"
+  },
+  "pages": {
+    "about": {
+      "title": "Haqqımızda",
+      "subtitle": "Maliyyə, audit, hüquq, vergi və konsaltinq sahələrində peşəkar tərəfdaşınız"
+    },
+    "whyUs": {
+      "title": "Niyə biz",
+      "subtitle": "Bizi fərqləndirən dəyərlər və yanaşma"
+    },
+    "partners": {
+      "title": "Partnyorlarımız",
+      "subtitle": "Bizə etibar edən dövlət qurumları və özəl şirkətlər"
+    },
+    "services": {
+      "title": "Xidmətlər",
+      "subtitle": "Müəssisənizin bütün maliyyə və hüquqi ehtiyacları üçün tam həllər"
+    },
+    "blogNews": {
+      "title": "Xəbərlər",
+      "subtitle": "Şirkətimizdən və sahə üzrə ən son yeniliklər"
+    },
+    "blogLaw": {
+      "title": "Qanunvericilik",
+      "subtitle": "Qanunvericilik dəyişiklikləri və hüquqi izahlar"
+    },
+    "contact": {
+      "title": "Əlaqə",
+      "subtitle": "Suallarınız üçün bizimlə əlaqə saxlayın",
+      "writeUs": "Bizə yazın",
+      "formHint": "Formu doldurun və komandamız ən qısa zamanda sizinlə əlaqə saxlasın.",
+      "success": "Müraciətiniz qəbul edildi. Tezliklə sizinlə əlaqə saxlayacağıq.",
+      "name": "Ad, Soyad",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "message": "Mesajınız",
+      "address": "Ünvan"
+    },
+    "calculator": {
+      "title": "Əmək haqqından tutulmaların hesablanması",
+      "subtitle": "2026-cı il üzrə əmək haqqının hesablanması. NET-dən GROSS-a və GROSS-dan NET-ə."
+    },
+    "notFound": {
+      "title": "Səhifə tapılmadı",
+      "subtitle": "Axtardığınız səhifə mövcud deyil və ya köçürülüb."
+    },
+    "serviceDetail": {
+      "whyChoose": "Niyə bu xidməti seçməlisiniz?",
+      "apply": "Bu xidmət üçün müraciət et",
+      "otherServices": "Digər xidmətlər"
+    }
+  },
+  "academy": {
+    "title": "Abacus Akademiya",
+    "subtitle": "Peşəkar təlim proqramları və bilik testi",
+    "fallbackDescription": "Abacus Akademiya audit, vergi, mühasibatlıq və digər sahələrdə praktiki təlimlər təqdim edir.",
+    "quiz": {
+      "title": "Bilik testi",
+      "description": "Audit, vergi, mühasibatlıq, HR, konsaltinq, hüquq və satınalma mövzularında 20 suallıq test. Cavablarınızı seçin və nəticəni görün.",
+      "questionCount": "Testdə {{count}} təsadüfi sual verilir",
+      "start": "Testə başla",
+      "question": "Sual",
+      "of": "/",
+      "next": "Növbəti",
+      "previous": "Əvvəlki",
+      "submit": "Nəticəni gör",
+      "unavailable": "Test sualları hazırda mövcud deyil.",
+      "topics": {
+        "audit": "Audit",
+        "tax": "Vergi",
+        "accounting": "Mühasibatlıq",
+        "hr": "İnsan resursları",
+        "consulting": "Konsaltinq",
+        "legal": "Hüquq",
+        "procurement": "Satınalma"
+      },
+      "results": {
+        "title": "Nəticəniz",
+        "score": "Faiz",
+        "grade": {
+          "excellent": "Əla nəticə",
+          "good": "Yaxşı nəticə",
+          "fair": "Orta nəticə",
+          "needsImprovement": "Təkmilləşdirmə lazımdır"
+        },
+        "contactTitle": "Akademiya proqramları ilə maraqlanırsınız?",
+        "contactText": "Kurs cədvəli və qeydiyyat üçün bizimlə əlaqə saxlayın.",
+        "retake": "Testi təkrarla"
+      }
+    }
+  },
+  "calculator": {
+    "grossToNet": "GROSS → NET",
+    "netToGross": "NET → GROSS",
+    "sectorPrivate": "Qeyri neft-qaz və özəl sektor",
+    "sectorState": "Dövlət və Neft-qaz sektoru",
+    "jobMain": "Əsas iş yeri",
+    "jobExtra": "Əlavə iş yeri",
+    "grossLabel": "Hesablanmış əmək haqqı (GROSS)",
+    "netLabel": "Xalis əmək haqqı (NET)",
+    "unionFee": "Həmkarlar təşkilatına üzvlük haqqı",
+    "taxBenefit": "Vergi güzəşti",
+    "calculate": "Hesabla",
+    "employee": "İşçi",
+    "employer": "İşəgötürən",
+    "rows": {
+      "gross": "Hesablanan əmək haqqı (GROSS)",
+      "taxable": "Vergiyə cəlb olunan məbləğ",
+      "incomeTax": "Gəlir vergisi",
+      "dsmf": "DSMF ayırmaları",
+      "unemployment": "İşsizlikdən sığorta haqqı",
+      "medical": "İcbari tibbi sığorta haqqı",
+      "union": "Həmkarlar təşkilatına üzvlük haqqı",
+      "net": "Yekun ödəniləcək məbləğ (NET)",
+      "superGross": "Super GROSS"
+    }
+  },
+  "benefits": {
+    "professional": "Peşəkar və sertifikatlı mütəxəssislər",
+    "compliance": "Qanunvericiliyə tam uyğunluq",
+    "transparent": "Operativ və şəffaf iş prosesi",
+    "personal": "Fərdi yanaşma və davamlı dəstək"
+  }
+}

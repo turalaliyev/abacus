@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import { motion } from "motion/react"
 import { ChevronRight } from "lucide-react"
 
@@ -9,6 +10,8 @@ type PageHeaderProps = {
 }
 
 export function PageHeader({ title, subtitle, breadcrumb }: PageHeaderProps) {
+  const { t } = useTranslation()
+
   return (
     <section className="relative overflow-hidden bg-navy-950 py-16 lg:py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(212,175,55,0.12),transparent_45%)]" />
@@ -20,7 +23,7 @@ export function PageHeader({ title, subtitle, breadcrumb }: PageHeaderProps) {
         >
           <nav className="mb-4 flex items-center gap-1.5 text-sm text-slate-400">
             <Link to="/" className="transition-colors hover:text-gold-400">
-              Əsas
+              {t("common.home")}
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-gold-400">{breadcrumb ?? title}</span>

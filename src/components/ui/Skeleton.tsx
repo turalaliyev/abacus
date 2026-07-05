@@ -44,16 +44,18 @@ export function StatsSkeleton() {
   )
 }
 
-export function ServicesGridSkeleton({ count = 6 }: { count?: number }) {
+export function ServicesGridSkeleton({ count = 9 }: { count?: number }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="rounded-2xl border border-slate-200 bg-white p-7">
-          <Skeleton className="h-14 w-14 rounded-xl" />
-          <Skeleton className="mt-5 h-6 w-3/4" />
-          <Skeleton className="mt-3 h-4 w-full" />
-          <Skeleton className="mt-2 h-4 w-full" />
-          <Skeleton className="mt-2 h-4 w-2/3" />
+        <div key={i} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <Skeleton className="h-32 w-full rounded-none sm:h-36" />
+          <div className="p-5 sm:p-6">
+            <Skeleton className="h-6 w-3/4" />
+            <Skeleton className="mt-3 h-4 w-full" />
+            <Skeleton className="mt-2 h-4 w-full" />
+            <Skeleton className="mt-2 h-4 w-2/3" />
+          </div>
         </div>
       ))}
     </div>
@@ -80,7 +82,7 @@ export function PartnersGridSkeleton({ count = 12 }: { count?: number }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {Array.from({ length: count }).map((_, i) => (
-        <Skeleton key={i} className="min-h-24 w-full rounded-xl" />
+        <Skeleton key={i} className="min-h-44 w-full rounded-xl bg-[#CAD1D8]" />
       ))}
     </div>
   )
