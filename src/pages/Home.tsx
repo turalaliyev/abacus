@@ -21,6 +21,7 @@ export function Home() {
     <>
       <Hero />
       <StatsBar />
+      <CtaSection />
       <ServicesGrid />
 
       <section className="bg-slate-50 py-20 lg:py-28">
@@ -80,7 +81,6 @@ export function Home() {
       </section>
 
       <PartnersSection limit={4} />
-      <CtaSection />
     </>
   )
 }

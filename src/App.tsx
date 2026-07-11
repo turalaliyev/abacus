@@ -10,6 +10,7 @@ import { Blog } from "./pages/Blog"
 import { Academy } from "./pages/Academy"
 import { Calculator } from "./pages/Calculator"
 import { Contact } from "./pages/Contact"
+import { Inquiry } from "./pages/Inquiry"
 import { NotFound } from "./pages/NotFound"
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/akademiya/*" element={<Navigate to="/akademiya" replace />} />
           <Route path="/kalkulyator" element={<Calculator />} />
           <Route path="/elaqe" element={<Contact />} />
+          <Route path="/muraciet" element={<Inquiry />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -17,7 +17,7 @@ export function CtaSection() {
             {t("sections.ctaSubtitle")}
           </p>
           <div className="mt-8 flex justify-center">
-            <Button to="/elaqe">
+            <Button to="/muraciet">
               {t("sections.ctaButton")} <ArrowRight className="h-4 w-4" />
             </Button>
           </div>

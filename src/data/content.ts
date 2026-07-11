@@ -21,6 +21,7 @@ export const navItems = [
       { label: "Haqqımızda", href: "/haqqimizda" },
       { label: "Niyə biz", href: "/niye-biz" },
       { label: "Partnyorlarımız", href: "/partnyorlar" },
+      { label: "Müraciət", href: "/muraciet" },
     ],
   },
   {

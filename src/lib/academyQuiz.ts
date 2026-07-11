@@ -12,11 +12,26 @@ export function shuffleQuestions<T>(items: T[]): T[] {
   return copy
 }
 
+/** Shuffle answer options and keep correct_index pointing at the same choice. */
+export function shuffleOptions(question: AcademyQuizQuestion): AcademyQuizQuestion {
+  const indexed = question.options.map((option, index) => ({ option, index }))
+  const shuffled = shuffleQuestions(indexed)
+  const correct_index = shuffled.findIndex((item) => item.index === question.correct_index)
+
+  return {
+    ...question,
+    options: shuffled.map((item) => item.option),
+    correct_index: correct_index === -1 ? question.correct_index : correct_index,
+  }
+}
+
 export function pickQuizQuestions(
   pool: AcademyQuizQuestion[],
   count = QUIZ_QUESTION_COUNT,
 ): AcademyQuizQuestion[] {
-  return shuffleQuestions(pool).slice(0, Math.min(count, pool.length))
+  return shuffleQuestions(pool)
+    .slice(0, Math.min(count, pool.length))
+    .map(shuffleOptions)
 }
 
 export function scoreQuiz(

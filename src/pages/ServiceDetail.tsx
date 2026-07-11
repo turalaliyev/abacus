@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom"
-import { CheckCircle2, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { PageHeader } from "../components/ui/PageHeader"
 import { AnimatedSection } from "../components/ui/AnimatedSection"
@@ -20,13 +20,6 @@ const slugMap: Record<string, string> = {
   kadr: "hr-audit",
   miqrasiya: "miqrasiya",
 }
-
-const BENEFIT_KEYS = [
-  "benefits.professional",
-  "benefits.compliance",
-  "benefits.transparent",
-  "benefits.personal",
-] as const
 
 function findServicesNav(navItems: { href: string; children?: { href: string; label: string }[] }[]) {
   return navItems.find(
@@ -73,18 +66,6 @@ export function ServiceDetail() {
                     loading="lazy"
                   />
                 )}
-
-                <h3 className="mt-12 text-2xl font-bold text-navy-900">
-                  {t("pages.serviceDetail.whyChoose")}
-                </h3>
-                <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-                  {BENEFIT_KEYS.map((key) => (
-                    <li key={key} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold-500" />
-                      <span className="text-slate-600">{t(key)}</span>
-                    </li>
-                  ))}
-                </ul>
 
                 <div className="mt-10">
                   <Button to="/elaqe">
