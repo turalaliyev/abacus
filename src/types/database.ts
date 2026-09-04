@@ -55,6 +55,8 @@ export type Service = {
   id: string
   slug: string
   title: string
+  /** Short plain-text card blurb. Falls back to stripped `description`. */
+  summary: string
   description: string
   icon: string
   image_url: string
@@ -73,6 +75,13 @@ export type Partner = {
   id: string
   name: string
   logo_url: string
+  sort_order: number
+}
+
+export type FaqItem = {
+  id: string
+  question: string
+  answer: string
   sort_order: number
 }
 

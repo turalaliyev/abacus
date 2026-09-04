@@ -8,7 +8,20 @@
     "send": "Göndər",
     "backHome": "Əsas səhifəyə qayıt",
     "noPosts": "Hələlik məqalə yoxdur.",
-    "yearsExperience": "illik təcrübə"
+    "yearsExperience": "illik təcrübə",
+    "callNow": "Zəng et"
+  },
+  "trust": {
+    "licenseTitle": "Lisenziya",
+    "licenseValue": "Auditorlar Palatası · {{number}}",
+    "sinceTitle": "Fəaliyyət",
+    "sinceValue": "{{year}}-ci ildən",
+    "hoursTitle": "İş saatları",
+    "replyTitle": "Cavab müddəti",
+    "replyValue": "1 iş günü ərzində",
+    "clientsTitle": "Müştəri",
+    "clientsValue": "300+ şirkət və qurum",
+    "licenseFooter": "{{authority}} üzvü · Lisenziya {{number}} · {{year}}-ci ildən fəaliyyətdə"
   },
   "footer": {
     "services": "Xidmətlər",
@@ -32,6 +45,17 @@
     "showAllPartners": "Bütün partnyorları göstər",
     "teamTitle": "Komandamız",
     "aboutLabel": "Haqqımızda",
+    "servicesEyebrow": "Xidmətlər",
+    "whyUsEyebrow": "Üstünlüklərimiz",
+    "processEyebrow": "Proses",
+    "faqEyebrow": "Suallar",
+    "whyUsTitle": "Niyə bizi seçməlisiniz?",
+    "whyUsSubtitle": "Müştərilərimizin bizi seçməsinin beş əsas səbəbi",
+    "processTitle": "Necə işləyirik",
+    "processSubtitle": "İlk əlaqədən yekun hesabata qədər dörd sadə addım",
+    "faqTitle": "Tez-tez verilən suallar",
+    "faqSubtitle": "Xidmətlərimiz, qiymətlər və iş prosesi barədə ən çox soruşulanlar",
+    "faqMoreQuestions": "Sualınıza cavab tapmadınız?",
     "ctaTitle": "Layihəniz üçün peşəkar dəstək axtarırsınız?",
     "ctaSubtitle": "Komandamız sizinlə əlaqə saxlamağa və ehtiyaclarınıza uyğun həll təklif etməyə hazırdır.",
     "ctaButton": "Pulsuz konsultasiya al"

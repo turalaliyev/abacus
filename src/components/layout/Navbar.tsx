@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "motion/react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { useLocalizedNavItems, useLocalizedSiteSettings } from "../../hooks/useLocalizedData"
 import { useMediaAssets } from "../../hooks/useSiteData"
@@ -8,12 +8,21 @@ import { getMediaUrl } from "../../lib/media"
 import { Button } from "../ui/Button"
 import { NavbarSkeleton } from "../ui/Skeleton"
 import { LanguageSwitcher } from "../ui/LanguageSwitcher"
+import { ScrollProgress } from "../ui/ScrollProgress"
+import { Magnetic } from "../ui/Magnetic"
+import { EASE } from "../../lib/motion"
 import { useTranslation } from "react-i18next"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+
+  // Past the fold the bar tightens and the contact strip folds away, giving
+  // the content more room without losing the nav.
+  const { scrollY } = useScroll()
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 80))
 
   const { t } = useTranslation()
   const { data: settings, isLoading: settingsLoading } = useLocalizedSiteSettings()
@@ -27,11 +36,25 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 lg:gap-4 lg:px-8">
+    <header
+      className={`sticky top-0 z-50 border-b transition-all duration-500 ${
+        scrolled
+          ? "border-slate-200/80 bg-white/85 shadow-lg shadow-navy-950/5 backdrop-blur-xl"
+          : "border-transparent bg-white/95 backdrop-blur-md"
+      }`}
+    >
+      <nav
+        className={`mx-auto flex max-w-7xl items-center gap-3 px-4 transition-all duration-500 lg:gap-4 lg:px-8 ${
+          scrolled ? "py-2" : "py-3"
+        }`}
+      >
         <Link to="/" className="flex shrink-0 items-center gap-2">
           {logoUrl ? (
-            <img src={logoUrl} alt="Abacus Audit" className="h-9 w-auto lg:h-10" />
+            <img
+              src={logoUrl}
+              alt="Abacus Audit"
+              className={`w-auto transition-all duration-500 ${scrolled ? "h-8 lg:h-9" : "h-9 lg:h-11"}`}
+            />
           ) : (
             <>
               <span className="grid h-10 w-10 place-items-center rounded-lg bg-navy-900 font-bold text-gold-400">
@@ -93,9 +116,11 @@ export function Navbar() {
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
           <LanguageSwitcher />
-          <Button to="/elaqe" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5 xl:text-sm">
-            {t("common.getOffer")}
-          </Button>
+          <Magnetic strength={0.22}>
+            <Button to="/elaqe" className="whitespace-nowrap px-4 py-2.5 text-xs xl:px-5 xl:text-sm">
+              {t("common.getOffer")}
+            </Button>
+          </Magnetic>
         </div>
 
         <button
@@ -175,9 +200,24 @@ export function Navbar() {
         )}
       </AnimatePresence>
 
-      <div className="bg-navy-900 px-4 py-1.5 text-center text-xs text-slate-300">
-        {settings.phone} · {settings.email}
-      </div>
+      <motion.div
+        initial={false}
+        animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.4, ease: EASE }}
+        className="overflow-hidden bg-navy-900 text-center text-xs text-slate-300"
+      >
+        <div className="px-4 py-1.5">
+          <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="hover:text-gold-400">
+            {settings.phone}
+          </a>
+          {" · "}
+          <a href={`mailto:${settings.email}`} className="hover:text-gold-400">
+            {settings.email}
+          </a>
+        </div>
+      </motion.div>
+
+      <ScrollProgress />
     </header>
   )
 }

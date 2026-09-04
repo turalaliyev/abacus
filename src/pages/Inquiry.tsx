@@ -9,9 +9,6 @@ import { getSupabase, isSupabaseConfigured } from "../lib/supabase"
 const INPUT_CLS =
   "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 placeholder:text-slate-400"
 
-const SELECT_CLS =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 appearance-none"
-
 type Step1 = { fullName: string; companyName: string; phone: string; email: string }
 type Step2 = { services: string[]; goal: string; timeline: string }
 type Step3 = { budget: string; notes: string }

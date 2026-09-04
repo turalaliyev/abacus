@@ -2,6 +2,7 @@ import type {
   AcademyCourse,
   AcademyQuizQuestion,
   BlogPost,
+  FaqItem,
   NavItem,
   Partner,
   Service,
@@ -66,6 +67,7 @@ export function localizeService(row: Row, locale: Locale): Service {
     id: row.id as string,
     slug: row.slug as string,
     title: pickText(row.title_i18n as I18nText, row.title as string, locale),
+    summary: pickText(row.summary_i18n as I18nText, (row.summary as string) ?? '', locale),
     description: pickText(row.description_i18n as I18nText, row.description as string, locale),
     icon: row.icon as string,
     image_url: row.image_url as string,
@@ -97,6 +99,15 @@ export function localizeWhyUs(row: Row, locale: Locale): WhyUsItem {
     id: row.id as string,
     title: pickText(row.title_i18n as I18nText, row.title as string, locale),
     description: pickText(row.description_i18n as I18nText, row.description as string, locale),
+    sort_order: row.sort_order as number,
+  }
+}
+
+export function localizeFaq(row: Row, locale: Locale): FaqItem {
+  return {
+    id: row.id as string,
+    question: pickText(row.question_i18n as I18nText, row.question as string, locale),
+    answer: pickText(row.answer_i18n as I18nText, row.answer as string, locale),
     sort_order: row.sort_order as number,
   }
 }

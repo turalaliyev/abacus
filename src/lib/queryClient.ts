@@ -24,6 +24,7 @@ export const queryKeys = {
   stats: ['stats'] as const,
   partners: ['partners'] as const,
   whyUsItems: ['why_us_items'] as const,
+  faqItems: ['faq_items'] as const,
   blogPosts: (type?: string) => ['blog_posts', type] as const,
   academyCourses: (track?: string) => ['academy_courses', track] as const,
   academyQuizQuestions: ['academy_quiz_questions'] as const,

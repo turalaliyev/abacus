@@ -23,7 +23,7 @@ INSERT INTO site_settings (
   1,
   'Abacus Audit & Consulting LLC',
   'Peşəkar audit, vergi və mühasibatlıq xidmətləri',
-  '+994 55 213 47 37',
+  '+994 12 480 13 41',
   'info@abacusaudit.az',
   'Bakı şəhəri Nərimanov rayonu Məsud Əlizadə küçəsi 138',
   'https://facebook.com',

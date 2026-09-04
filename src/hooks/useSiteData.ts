@@ -7,6 +7,7 @@ import type {
   AcademyCourse,
   AcademyQuizQuestionRow,
   BlogPost,
+  FaqItem,
   MediaMap,
   NavItem,
   Partner,
@@ -18,6 +19,7 @@ import type {
 } from '../types/database'
 import {
   aboutContent,
+  faqItems as defaultFaq,
   navItems as defaultNav,
   partners as defaultPartners,
   services as defaultServices,
@@ -34,7 +36,7 @@ function defaultSiteSettings(): SiteSettings {
     tagline: siteConfig.tagline,
     phone: siteConfig.phone,
     email: siteConfig.email,
-    address: siteConfig.address,
+    address: siteConfig.address.full,
     facebook_url: siteConfig.social.facebook,
     instagram_url: siteConfig.social.instagram,
     linkedin_url: siteConfig.social.linkedin,
@@ -139,8 +141,9 @@ export function useServices() {
       if (!isSupabaseConfigured) {
         return defaultServices.map((s, i) => ({
           id: s.id,
-          slug: s.id,
+          slug: s.slug,
           title: s.title,
+          summary: s.summary,
           description: s.description,
           icon: s.icon,
           image_url: '',
@@ -217,6 +220,35 @@ export function useWhyUsItems() {
         .order('sort_order')
       if (error) throw error
       return data ?? []
+    },
+  })
+}
+
+/**
+ * FAQ entries. Falls back to the static list when Supabase is unconfigured or
+ * when the faq_items table does not exist yet — supabase/004_content_refresh.sql
+ * creates it, and the site must keep working before that has been run.
+ */
+export function useFaqItems() {
+  return useQuery({
+    queryKey: queryKeys.faqItems,
+    queryFn: async (): Promise<FaqItem[]> => {
+      const fallback = defaultFaq.map((f, i) => ({
+        id: String(i),
+        question: f.question,
+        answer: f.answer,
+        sort_order: i + 1,
+      }))
+      if (!isSupabaseConfigured) return fallback
+
+      const { data, error } = await getSupabase()
+        .from('faq_items')
+        .select('*')
+        .eq('is_published', true)
+        .order('sort_order')
+
+      if (error) return fallback
+      return data?.length ? data : fallback
     },
   })
 }

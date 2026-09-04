@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import { Facebook, Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
+import { Clock, Facebook, Instagram, Linkedin, MessageCircle, Mail, Phone, MapPin } from "lucide-react"
 import { useTranslation } from "react-i18next"
+import { siteConfig } from "../../data/content"
 import { useMediaAssets } from "../../hooks/useSiteData"
 import { useLocalizedNavItems, useLocalizedSiteSettings } from "../../hooks/useLocalizedData"
 import { getMediaUrl } from "../../lib/media"
@@ -61,17 +62,24 @@ export function Footer() {
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
             {settings.tagline}. {t("footer.taglineExtra")}
           </p>
+          <p className="mt-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
+            {t("trust.licenseFooter", {
+              authority: siteConfig.license.authority,
+              number: siteConfig.license.number,
+              year: siteConfig.foundedYear,
+            })}
+          </p>
           <div className="mt-5 flex gap-3">
-            <a href={settings.facebook_url} aria-label="Facebook" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
               <Facebook className="h-4 w-4" />
             </a>
-            <a href={settings.instagram_url} aria-label="Instagram" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
               <Instagram className="h-4 w-4" />
             </a>
-            <a href={settings.linkedin_url} aria-label="LinkedIn" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
               <Linkedin className="h-4 w-4" />
             </a>
-            <a href={settings.whatsapp_url} aria-label="WhatsApp" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.whatsapp_url} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
               <MessageCircle className="h-4 w-4" />
             </a>
           </div>
@@ -123,6 +131,14 @@ export function Footer() {
             <li className="flex items-start gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
               <a href={`mailto:${settings.email}`} className="text-slate-400 transition-colors hover:text-gold-400">{settings.email}</a>
+            </li>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+              <span className="text-slate-400">
+                {siteConfig.hours.days}
+                <br />
+                {siteConfig.hours.time}
+              </span>
             </li>
           </ul>
         </div>

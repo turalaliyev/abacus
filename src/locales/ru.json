@@ -8,7 +8,20 @@
     "send": "Отправить",
     "backHome": "На главную",
     "noPosts": "Пока нет статей.",
-    "yearsExperience": "лет опыта"
+    "yearsExperience": "лет опыта",
+    "callNow": "Позвонить"
+  },
+  "trust": {
+    "licenseTitle": "Лицензия",
+    "licenseValue": "Палата аудиторов · {{number}}",
+    "sinceTitle": "На рынке",
+    "sinceValue": "с {{year}} года",
+    "hoursTitle": "Часы работы",
+    "replyTitle": "Время ответа",
+    "replyValue": "В течение 1 рабочего дня",
+    "clientsTitle": "Клиенты",
+    "clientsValue": "300+ компаний и организаций",
+    "licenseFooter": "Член организации «{{authority}}» · Лицензия {{number}} · Работаем с {{year}} года"
   },
   "footer": {
     "services": "Услуги",
@@ -32,6 +45,17 @@
     "showAllPartners": "Показать всех партнёров",
     "teamTitle": "Наша команда",
     "aboutLabel": "О нас",
+    "servicesEyebrow": "Услуги",
+    "whyUsEyebrow": "Наши преимущества",
+    "processEyebrow": "Процесс",
+    "faqEyebrow": "Вопросы",
+    "whyUsTitle": "Почему выбирают нас?",
+    "whyUsSubtitle": "Пять основных причин, по которым клиенты остаются с нами",
+    "processTitle": "Как мы работаем",
+    "processSubtitle": "Четыре простых шага от первого контакта до итогового отчёта",
+    "faqTitle": "Часто задаваемые вопросы",
+    "faqSubtitle": "О чём клиенты спрашивают чаще всего: услуги, цены и процесс работы",
+    "faqMoreQuestions": "Не нашли ответ на свой вопрос?",
     "ctaTitle": "Ищете профессиональную поддержку для вашего проекта?",
     "ctaSubtitle": "Наша команда готова связаться с вами и предложить решение под ваши задачи.",
     "ctaButton": "Бесплатная консультация"

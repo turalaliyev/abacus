@@ -1,1 +1,8 @@
+# SPA fallback for routes that have no prerendered file.
+#
+# Do NOT add a "!" (force) to this rule. Without force, Netlify serves an
+# existing static file before applying the rule, which is what lets the
+# prerendered pages from scripts/postbuild.mjs be served with their own
+# <title>, Open Graph tags and JSON-LD. Forcing it would send every URL to the
+# generic shell and silently undo all of the SEO work.
 /*    /index.html   200

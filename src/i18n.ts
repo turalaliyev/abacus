@@ -5,7 +5,20 @@ import en from './locales/en.json'
 import ru from './locales/ru.json'
 import type { Locale } from './lib/i18nContent'
 
-const saved = localStorage.getItem('abacus-locale') as Locale | null
+const LOCALES = ['az', 'en', 'ru']
+
+function isLocale(value: string | null): value is Locale {
+  return !!value && LOCALES.includes(value)
+}
+
+/**
+ * A `?lang=` query parameter wins over the saved preference, so a link shared
+ * in a given language opens in that language. This is also what the hreflang
+ * alternates point at.
+ */
+const fromQuery = new URLSearchParams(window.location.search).get('lang')
+const saved = localStorage.getItem('abacus-locale')
+const initialLocale: Locale = isLocale(fromQuery) ? fromQuery : isLocale(saved) ? saved : 'az'
 
 void i18n.use(initReactI18next).init({
   resources: {
@@ -13,7 +26,7 @@ void i18n.use(initReactI18next).init({
     en: { translation: en },
     ru: { translation: ru },
   },
-  lng: saved && ['az', 'en', 'ru'].includes(saved) ? saved : 'az',
+  lng: initialLocale,
   fallbackLng: 'az',
   interpolation: { escapeValue: false },
 })

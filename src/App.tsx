@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { Seo } from "./components/seo/Seo"
+import { SmoothScroll } from "./components/ui/SmoothScroll"
 import { Layout } from "./components/layout/Layout"
 import { Home } from "./pages/Home"
 import { About } from "./pages/About"
@@ -16,6 +18,8 @@ import { NotFound } from "./pages/NotFound"
 function App() {
   return (
     <BrowserRouter>
+      <Seo />
+      <SmoothScroll />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />

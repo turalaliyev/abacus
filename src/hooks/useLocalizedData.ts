@@ -4,6 +4,7 @@ import { useAppLocale } from './useAppLocale'
 import {
   useAcademyQuizQuestions,
   useBlogPosts,
+  useFaqItems,
   useNavItems as useNavItemsBase,
   usePartners,
   useServices,
@@ -15,6 +16,7 @@ import {
 import {
   localizeAcademyQuizQuestion,
   localizeBlogPost,
+  localizeFaq,
   localizePartner,
   localizeService,
   localizeSiteSettings,
@@ -95,6 +97,17 @@ export function useLocalizedWhyUsItems() {
   const query = useWhyUsItems()
   const data = useMemo(
     () => query.data?.map((row) => localizeWhyUs(row as never, locale)),
+    [query.data, locale],
+  )
+  return { ...query, data }
+}
+
+export function useLocalizedFaqItems() {
+  const locale = useAppLocale()
+  useLocaleKey()
+  const query = useFaqItems()
+  const data = useMemo(
+    () => query.data?.map((row) => localizeFaq(row as never, locale)),
     [query.data, locale],
   )
   return { ...query, data }

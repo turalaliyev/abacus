@@ -8,7 +8,20 @@
     "send": "Send",
     "backHome": "Back to home",
     "noPosts": "No articles yet.",
-    "yearsExperience": "years of experience"
+    "yearsExperience": "years of experience",
+    "callNow": "Call now"
+  },
+  "trust": {
+    "licenseTitle": "Licence",
+    "licenseValue": "Chamber of Auditors · {{number}}",
+    "sinceTitle": "Operating since",
+    "sinceValue": "{{year}}",
+    "hoursTitle": "Working hours",
+    "replyTitle": "Response time",
+    "replyValue": "Within 1 business day",
+    "clientsTitle": "Clients",
+    "clientsValue": "300+ companies and institutions",
+    "licenseFooter": "Member of the {{authority}} · Licence {{number}} · Operating since {{year}}"
   },
   "footer": {
     "services": "Services",
@@ -32,6 +45,17 @@
     "showAllPartners": "Show all partners",
     "teamTitle": "Our team",
     "aboutLabel": "About us",
+    "servicesEyebrow": "Services",
+    "whyUsEyebrow": "Our advantages",
+    "processEyebrow": "Process",
+    "faqEyebrow": "Questions",
+    "whyUsTitle": "Why choose us?",
+    "whyUsSubtitle": "The five reasons our clients stay with us",
+    "processTitle": "How we work",
+    "processSubtitle": "Four straightforward steps from first contact to final report",
+    "faqTitle": "Frequently asked questions",
+    "faqSubtitle": "What clients most often ask about our services, pricing and process",
+    "faqMoreQuestions": "Didn't find the answer you needed?",
     "ctaTitle": "Looking for professional support for your project?",
     "ctaSubtitle": "Our team is ready to contact you and offer a solution tailored to your needs.",
     "ctaButton": "Get a free consultation"

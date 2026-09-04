@@ -8,18 +8,8 @@ import { Skeleton } from "../components/ui/Skeleton"
 import { ServiceLottie, hasServiceLottie } from "../components/ui/ServiceLottie"
 import { RichText } from "../components/ui/RichText"
 import { useLocalizedNavItems, useLocalizedServices } from "../hooks/useLocalizedData"
-
-const slugMap: Record<string, string> = {
-  audit: "audit",
-  vergi: "vergi",
-  konsaltinq: "konsaltinq",
-  qiymetlendirme: "qiymetlendirme",
-  huquq: "huquq",
-  muhasibat: "muhasibat",
-  qeydiyyat: "qeydiyyat",
-  kadr: "hr-audit",
-  miqrasiya: "miqrasiya",
-}
+import { findService, serviceImageUrl } from "../lib/serviceSlug"
+import { NotFound } from "./NotFound"
 
 function findServicesNav(navItems: { href: string; children?: { href: string; label: string }[] }[]) {
   return navItems.find(
@@ -33,17 +23,22 @@ export function ServiceDetail() {
   const { data: services, isLoading } = useLocalizedServices()
   const { data: navItems } = useLocalizedNavItems()
 
-  const dataSlug = slug ? slugMap[slug] ?? "audit" : "audit"
-  const service = services?.find((s) => s.slug === dataSlug) ?? services?.[0]
+  // findService tolerates the kadr/hr-audit slug split between the CMS and the
+  // public URL. An unknown slug is a real 404, not a reason to quietly render a
+  // different service.
+  const service = findService(services, slug)
   const title = service?.title ?? ""
+  const heroImage = service ? service.image_url || serviceImageUrl(service.slug) : undefined
 
   const serviceNav = findServicesNav(navItems ?? [])
-  const otherServices = serviceNav?.children?.filter((c) => !c.href.endsWith(slug ?? "")) ?? []
+  const otherServices = serviceNav?.children?.filter((c) => !c.href.endsWith(`/${slug}`)) ?? []
   const showLottie = hasServiceLottie(slug)
+
+  if (!isLoading && services && !service) return <NotFound />
 
   return (
     <>
-      <PageHeader title={title} breadcrumb={title} />
+      <PageHeader title={title} breadcrumb={title} image={heroImage} />
       <section className="bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {isLoading || !service ? (

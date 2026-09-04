@@ -27,3 +27,8 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Original service photos imported from abacusaudit.az. The optimised .webp
+# files next to them are committed and are what the site serves; these are only
+# the inputs for scripts/optimize-images.mjs.
+public/services/_src

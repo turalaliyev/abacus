@@ -8,6 +8,7 @@ import {
   Scale,
   Building2,
   FileText,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react"
 
@@ -20,6 +21,7 @@ const map: Record<string, LucideIcon> = {
   users: Users,
   scale: Scale,
   building: Building2,
+  "trending-up": TrendingUp,
   file: FileText,
 }
 
