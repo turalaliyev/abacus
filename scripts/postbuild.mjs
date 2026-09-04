@@ -130,8 +130,14 @@ function buildPage(shell, seo, faq) {
   let html = shell
 
   // Drop the shell's generic title/description so they can't compete.
-  html = html.replace(/<title>[\s\S]*?<\/title>\s*/i, '')
-  html = html.replace(/<meta\s+name="description"[^>]*>\s*/i, '')
+  // Anchored to the start of a line (a real tag always is) so this can't
+  // latch onto the word "<title>" if it ever appears inside prose in an
+  // HTML comment above it — that previously ate everything through the
+  // real tag's closing bracket, including the comment's own "-->", which
+  // left the rest of the document — app script included — inside an
+  // unterminated comment and rendered a blank page.
+  html = html.replace(/^[ \t]*<title>[\s\S]*?<\/title>[ \t]*\n?/im, '')
+  html = html.replace(/^[ \t]*<meta\s+name="description"[^>]*>[ \t]*\n?/im, '')
 
   html = html.replace('</head>', `  ${headFor(seo, faq)}\n  </head>`)
   html = html.replace('<div id="root"></div>', `<div id="root">${fallbackBody(seo)}</div>`)
