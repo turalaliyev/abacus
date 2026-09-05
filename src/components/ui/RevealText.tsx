@@ -32,6 +32,14 @@ export function RevealText({
 
   return (
     <Tag
+      // Remounts whenever the text changes (e.g. a language switch swaps
+      // settings.hero_title etc.) so the reveal replays cleanly. Without
+      // this, `viewport={{ once: true }}` below had already fired for the
+      // old words, so the new word spans mounted straight into their
+      // "hidden" variant (y: 110%, opacity: 0) with nothing left to push
+      // them to "visible" — they'd stay invisible until a full page reload
+      // remounted everything.
+      key={text}
       className={className}
       initial="hidden"
       whileInView="visible"

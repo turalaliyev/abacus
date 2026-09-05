@@ -99,13 +99,18 @@ function crawlableNav() {
 }
 
 /**
- * Static markup placed inside #root. React replaces it on mount, so it only
- * ever reaches crawlers and users with JavaScript disabled.
+ * Static markup placed inside #root. React replaces it on mount, but mounting
+ * still takes a beat (bundle download + parse + execute), during which a
+ * JS-enabled browser would otherwise paint this raw markup — visible as a
+ * flash of unstyled content. It's visually hidden (off-screen, not
+ * display:none) so sighted JS users never see it, while it stays fully
+ * present in the HTML source and the accessibility tree for crawlers,
+ * screen readers, and JS-disabled visitors.
  */
 function fallbackBody(seo) {
   const trail = [{ name: 'Əsas', path: '/' }, ...(seo.breadcrumb ?? [])]
   return `
-      <div id="seo-fallback">
+      <div id="seo-fallback" style="position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
         <nav aria-label="Naviqasiya">
         ${crawlableNav()}
         </nav>

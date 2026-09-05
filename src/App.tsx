@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Seo } from "./components/seo/Seo"
 import { SmoothScroll } from "./components/ui/SmoothScroll"
+import { Splash } from "./components/ui/Splash"
 import { Layout } from "./components/layout/Layout"
 import { Home } from "./pages/Home"
 import { About } from "./pages/About"
@@ -18,6 +19,7 @@ import { NotFound } from "./pages/NotFound"
 function App() {
   return (
     <BrowserRouter>
+      <Splash />
       <Seo />
       <SmoothScroll />
       <Routes>
