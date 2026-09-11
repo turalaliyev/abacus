@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Navbar } from "./Navbar"
 import { Footer } from "./Footer"
 import { StickyContactBar } from "../ui/StickyContactBar"
+import { FloatingWhatsApp } from "../ui/FloatingWhatsApp"
 import { EASE } from "../../lib/motion"
 
 export function Layout() {
@@ -29,6 +30,7 @@ export function Layout() {
       </AnimatePresence>
       <Footer />
       <StickyContactBar />
+      <FloatingWhatsApp />
     </div>
   )
 }

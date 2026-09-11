@@ -112,14 +112,14 @@ export function Home() {
                 </motion.div>
               </div>
 
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={inView}
-                variants={revealClip}
-                className="relative"
-              >
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 to-navy-700 p-1 shadow-2xl">
+              <div className="relative">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={inView}
+                  variants={revealClip}
+                  className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 to-navy-700 p-1 shadow-2xl"
+                >
                   {aboutImage ? (
                     <motion.img
                       style={{ y: imageY, scale: 1.16 }}
@@ -133,7 +133,7 @@ export function Home() {
                       <span className="font-serif text-8xl font-bold text-gold-400/90">A</span>
                     </div>
                   )}
-                </div>
+                </motion.div>
 
                 <motion.div
                   style={{ y: badgeY }}
@@ -144,7 +144,7 @@ export function Home() {
                     {t("common.yearsExperience")}
                   </div>
                 </motion.div>
-              </motion.div>
+              </div>
             </>
           )}
         </div>

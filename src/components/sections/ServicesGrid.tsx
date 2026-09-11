@@ -55,8 +55,16 @@ export function ServicesGrid() {
                         decoding="async"
                         className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
                         onError={(e) => {
-                          // Fall back to the icon treatment if neither source resolves.
-                          e.currentTarget.style.visibility = "hidden"
+                          // The CMS image can go dead (moved/removed on the source
+                          // site) without the CMS knowing — drop to the bundled
+                          // photo for this service, and only hide as a last resort.
+                          const img = e.currentTarget
+                          if (!img.dataset.fallback) {
+                            img.dataset.fallback = "1"
+                            img.src = serviceImageUrl(service.slug)
+                          } else {
+                            img.style.visibility = "hidden"
+                          }
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/25 to-transparent" />

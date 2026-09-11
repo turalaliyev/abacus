@@ -59,6 +59,11 @@ export function ServiceDetail() {
                     alt={service.title}
                     className="mt-8 w-full rounded-2xl object-cover"
                     loading="lazy"
+                    onError={(e) => {
+                      // Dead CMS link (source site moved/removed the file) —
+                      // drop the broken image instead of showing a placeholder icon.
+                      e.currentTarget.style.display = "none"
+                    }}
                   />
                 )}
 

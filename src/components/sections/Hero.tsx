@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef } from "react"
+import { Suspense, lazy, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { ArrowRight, Award, Phone } from "lucide-react"
 import { useTranslation } from "react-i18next"
@@ -21,6 +21,8 @@ export function Hero() {
   const { data: settings, isLoading } = useLocalizedSiteSettings()
   const { data: media } = useMediaAssets()
   const sectionRef = useRef<HTMLElement>(null)
+  const [videoReady, setVideoReady] = useState(false)
+  const [videoFailed, setVideoFailed] = useState(false)
 
   // Content drifts up and dims as the hero scrolls away, so the section below
   // arrives over the top of it rather than merely after it.
@@ -36,6 +38,7 @@ export function Hero() {
 
   const videoUrl = getMediaUrl(media, "hero_video")
   const posterUrl = getMediaUrl(media, "hero_poster")
+  const showVideo = Boolean(videoUrl) && !videoFailed
   const phone = settings.phone || siteConfig.phone
 
   return (
@@ -44,17 +47,30 @@ export function Hero() {
       className="grain relative isolate min-h-[92vh] overflow-hidden bg-navy-950"
     >
       <motion.div style={{ scale: bgScale }} className="absolute inset-0">
-        {videoUrl ? (
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={posterUrl || undefined}
-          >
-            <source src={videoUrl} type="video/mp4" />
-          </video>
+        {showVideo ? (
+          <>
+            {/*
+              The CMS video can run several MB and its poster is frequently
+              left blank in the CMS, so this gradient — not a blank frame —
+              is what a slow connection sees until the video can play.
+            */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.16),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(26,74,115,0.55),transparent_40%)]" />
+            <video
+              key={videoUrl}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+                videoReady ? "opacity-100" : "opacity-0"
+              }`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={posterUrl || undefined}
+              onCanPlay={() => setVideoReady(true)}
+              onError={() => setVideoFailed(true)}
+            >
+              <source src={videoUrl} type="video/mp4" />
+            </video>
+          </>
         ) : (
           <Suspense
             fallback={
@@ -70,7 +86,7 @@ export function Hero() {
         When the CMS supplies a hero video it stays the base layer — but the
         particle field still runs on top, so the 3D depth is present either way.
       */}
-      {videoUrl && (
+      {showVideo && (
         <div className="absolute inset-0 mix-blend-screen">
           <Suspense fallback={null}>
             <DataSurface variant="overlay" />

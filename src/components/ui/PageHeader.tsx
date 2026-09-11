@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { motion, useScroll, useTransform } from "motion/react"
@@ -17,6 +17,12 @@ type PageHeaderProps = {
 export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderProps) {
   const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
+  const [imageFailed, setImageFailed] = useState(false)
+
+  // A CMS-supplied photo can go dead (source moved/removed the file) after
+  // this header already rendered it once — reset so a new `image` gets a
+  // fresh try instead of staying stuck on the old failure.
+  useEffect(() => setImageFailed(false), [image])
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -26,21 +32,32 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 55])
   const fade = useTransform(scrollYProgress, [0, 1], [1, 0.2])
 
+  const showImage = Boolean(image) && !imageFailed
+
   return (
     <section
       ref={ref}
       className="grain relative isolate overflow-hidden bg-navy-950 py-20 lg:py-28"
     >
-      {image ? (
+      {/*
+        Gradient is always the base layer — if the photo is missing or fails
+        to load, this is what shows instead of a blank/broken background.
+      */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(212,175,55,0.14),transparent_45%),radial-gradient(circle_at_10%_90%,rgba(26,74,115,0.5),transparent_45%)]"
+      />
+      {showImage && (
         <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10 scale-110">
-          <img src={image} alt="" aria-hidden className="h-full w-full object-cover" />
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className="h-full w-full object-cover"
+            onError={() => setImageFailed(true)}
+          />
           <div className="absolute inset-0 bg-navy-950/80" />
         </motion.div>
-      ) : (
-        <motion.div
-          style={{ y: bgY }}
-          className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(212,175,55,0.14),transparent_45%),radial-gradient(circle_at_10%_90%,rgba(26,74,115,0.5),transparent_45%)]"
-        />
       )}
 
       {/* Faint ledger grid — ties the inner pages to the hero's data motif. */}

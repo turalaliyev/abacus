@@ -44,6 +44,11 @@ export function Blog({ variant = "xeberler" }: BlogProps) {
                             alt={post.title}
                             className="h-full w-full object-cover"
                             loading="lazy"
+                            onError={(e) => {
+                              // Dead CMS link — drop back to the gradient card
+                              // background instead of a broken-image icon.
+                              e.currentTarget.style.display = "none"
+                            }}
                           />
                         ) : null}
                         <span className="absolute left-4 top-4 rounded-full bg-gold-500 px-3 py-1 text-xs font-semibold text-navy-950">
