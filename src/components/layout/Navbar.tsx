@@ -49,22 +49,11 @@ export function Navbar() {
         }`}
       >
         <Link to="/" className="flex shrink-0 items-center gap-2">
-          {logoUrl ? (
-            <img
-              src={logoUrl}
-              alt="Abacus Audit"
-              className={`w-auto transition-all duration-500 ${scrolled ? "h-8 lg:h-9" : "h-9 lg:h-11"}`}
-            />
-          ) : (
-            <>
-              <span className="grid h-10 w-10 place-items-center rounded-lg bg-navy-900 font-bold text-gold-400">
-                A
-              </span>
-              <span className="text-lg font-bold tracking-tight text-navy-900">
-                Abacus<span className="text-gold-500">Audit</span>
-              </span>
-            </>
-          )}
+          <img
+            src={logoUrl || "/logo.png"}
+            alt="Abacus Audit"
+            className={`w-auto transition-all duration-500 ${scrolled ? "h-8 lg:h-9" : "h-9 lg:h-11"}`}
+          />
         </Link>
 
         <ul className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">

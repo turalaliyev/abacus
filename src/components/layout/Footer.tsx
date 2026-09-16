@@ -46,18 +46,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-1">
           <div className="flex items-center gap-2">
-            {logoUrl ? (
-              <img src={logoUrl} alt="Abacus Audit" className="h-10 w-auto" />
-            ) : (
-              <>
-                <span className="grid h-10 w-10 place-items-center rounded-lg bg-gold-500 font-bold text-navy-950">
-                  A
-                </span>
-                <span className="text-lg font-bold text-white">
-                  Abacus<span className="text-gold-400">Audit</span>
-                </span>
-              </>
-            )}
+            <img src={logoUrl || "/logo.png"} alt="Abacus Audit" className="h-10 w-auto" />
           </div>
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
             {settings.tagline}. {t("footer.taglineExtra")}
