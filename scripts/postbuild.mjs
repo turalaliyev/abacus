@@ -55,6 +55,7 @@ function headFor(seo, faq) {
   const tags = [
     `<title>${esc(seo.title)}</title>`,
     `<meta name="description" content="${esc(seo.description)}" />`,
+    ...(seo.keywords?.length ? [`<meta name="keywords" content="${esc(seo.keywords.join(', '))}" />`] : []),
     `<link rel="canonical" href="${esc(canonical)}" />`,
 
     `<meta property="og:type" content="website" />`,
@@ -174,6 +175,7 @@ ${urls}
 
 const robots = `User-agent: *
 Allow: /
+Disallow: /admin
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `

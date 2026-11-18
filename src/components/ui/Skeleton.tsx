@@ -14,15 +14,15 @@ export function Skeleton({ className = '', ...props }: SkeletonProps) {
 
 export function HeroSkeleton() {
   return (
-    <section className="relative overflow-hidden bg-navy-950">
+    <section className="relative overflow-hidden bg-ink-950">
       <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
-        <Skeleton className="h-7 w-64 rounded-full bg-white/10" />
-        <Skeleton className="mt-6 h-14 w-full max-w-2xl bg-white/10" />
-        <Skeleton className="mt-3 h-14 w-full max-w-xl bg-white/10" />
-        <Skeleton className="mt-6 h-6 w-full max-w-lg bg-white/10" />
+        <Skeleton className="h-7 w-64 rounded-full bg-cream/10" />
+        <Skeleton className="mt-6 h-14 w-full max-w-2xl bg-cream/10" />
+        <Skeleton className="mt-3 h-14 w-full max-w-xl bg-cream/10" />
+        <Skeleton className="mt-6 h-6 w-full max-w-lg bg-cream/10" />
         <div className="mt-10 flex gap-4">
-          <Skeleton className="h-12 w-40 bg-white/10" />
-          <Skeleton className="h-12 w-36 bg-white/10" />
+          <Skeleton className="h-12 w-40 bg-cream/10" />
+          <Skeleton className="h-12 w-36 bg-cream/10" />
         </div>
       </div>
     </section>
@@ -31,12 +31,12 @@ export function HeroSkeleton() {
 
 export function StatsSkeleton() {
   return (
-    <section className="bg-navy-900 py-14">
+    <section className="bg-ink-900 py-14">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 lg:grid-cols-4 lg:px-8">
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="text-center">
-            <Skeleton className="mx-auto h-12 w-24 bg-white/10" />
-            <Skeleton className="mx-auto mt-3 h-4 w-20 bg-white/10" />
+            <Skeleton className="mx-auto h-12 w-24 bg-cream/10" />
+            <Skeleton className="mx-auto mt-3 h-4 w-20 bg-cream/10" />
           </div>
         ))}
       </div>
@@ -48,7 +48,7 @@ export function ServicesGridSkeleton({ count = 9 }: { count?: number }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div key={i} className="overflow-hidden rounded-2xl border border-slate-200 bg-cream">
           <Skeleton className="h-32 w-full rounded-none sm:h-36" />
           <div className="p-5 sm:p-6">
             <Skeleton className="h-6 w-3/4" />
@@ -66,7 +66,7 @@ export function TeamGridSkeleton({ count = 8 }: { count?: number }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div key={i} className="overflow-hidden rounded-2xl border border-slate-200 bg-cream">
           <Skeleton className="aspect-[4/5] w-full rounded-none" />
           <div className="p-5">
             <Skeleton className="h-5 w-2/3" />
@@ -132,7 +132,7 @@ export function TextBlockSkeleton({ lines = 4 }: { lines?: number }) {
 
 export function NavbarSkeleton() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-cream/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         <Skeleton className="h-10 w-40" />
         <div className="hidden gap-2 lg:flex">

@@ -35,7 +35,7 @@ export function TiltCard({
   const glareY = useTransform(py, [-0.5, 0.5], ["0%", "100%"])
   // useMotionTemplate keeps the gradient reactive; reading .get() would bake in
   // whatever the value happened to be on the render that produced the string.
-  const glareBg = useMotionTemplate`radial-gradient(420px circle at ${glareX} ${glareY}, rgba(212,175,55,0.18), transparent 55%)`
+  const glareBg = useMotionTemplate`radial-gradient(420px circle at ${glareX} ${glareY}, rgba(255, 90, 31,0.18), transparent 55%)`
 
   function handleMove(e: React.PointerEvent<HTMLDivElement>) {
     if (reduced || !ref.current) return

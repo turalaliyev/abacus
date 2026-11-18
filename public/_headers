@@ -1,0 +1,7 @@
+# The admin panel is a private tool: keep it out of search results even if a
+# link to it ever appears. Also mirrored by <meta name="robots"> in the app.
+/admin
+  X-Robots-Tag: noindex, nofollow
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow

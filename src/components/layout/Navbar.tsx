@@ -36,16 +36,15 @@ export function Navbar() {
   }
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-all duration-500 ${
-        scrolled
-          ? "border-slate-200/80 bg-white/85 shadow-lg shadow-navy-950/5 backdrop-blur-xl"
-          : "border-transparent bg-white/95 backdrop-blur-md"
-      }`}
-    >
+    <header className="sticky top-0 z-50 transition-all duration-500">
+      {/* Floating pill, as on the reference site. The gutter lives on this
+          wrapper so the contact strip below can span the full viewport. */}
+      <div className="px-3 pt-3 lg:px-6">
       <nav
-        className={`mx-auto flex max-w-7xl items-center gap-3 px-4 transition-all duration-500 lg:gap-4 lg:px-8 ${
-          scrolled ? "py-2" : "py-3"
+        className={`mx-auto flex max-w-7xl items-center gap-3 rounded-full border px-4 transition-all duration-500 lg:gap-4 lg:px-6 ${
+          scrolled
+            ? "border-ink-900/10 bg-cream/90 py-2 shadow-lg shadow-ink-950/5 backdrop-blur-xl"
+            : "border-ink-900/5 bg-cream/95 py-3 backdrop-blur-md"
         }`}
       >
         <Link to="/" className="flex shrink-0 items-center gap-2">
@@ -70,7 +69,7 @@ export function Navbar() {
                 <Link
                   to={item.href}
                   className={`flex items-center gap-0.5 whitespace-nowrap rounded-md px-2 py-2 text-xs font-medium transition-colors xl:gap-1 xl:px-2.5 xl:text-sm ${
-                    active ? "text-gold-600" : "text-navy-900 hover:text-gold-600"
+                    active ? "text-accent-600" : "text-ink-900 hover:text-accent-600"
                   }`}
                 >
                   {item.label}
@@ -83,13 +82,13 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute left-0 top-full w-64 rounded-xl border border-slate-100 bg-white p-2 shadow-xl"
+                      className="absolute left-0 top-full w-64 rounded-xl border border-slate-100 bg-cream p-2 shadow-xl"
                     >
                       {item.children!.map((child) => (
                         <li key={child.href}>
                           <Link
                             to={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-gold-600"
+                            className="block rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-accent-600"
                           >
                             {child.label}
                           </Link>
@@ -114,13 +113,14 @@ export function Navbar() {
 
         <button
           type="button"
-          className="shrink-0 rounded-md p-2 text-navy-900 lg:hidden"
+          className="shrink-0 rounded-md p-2 text-ink-900 lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Menyu"
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
+      </div>
 
       <AnimatePresence>
         {mobileOpen && (
@@ -128,7 +128,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-slate-200 bg-white lg:hidden"
+            className="overflow-hidden border-t border-slate-200 bg-cream lg:hidden"
           >
             <ul className="space-y-1 px-4 py-4">
               {navItems.map((item) => {
@@ -138,7 +138,7 @@ export function Navbar() {
                     <div className="flex items-center justify-between">
                       <Link
                         to={item.href}
-                        className="block flex-1 py-2 text-sm font-medium text-navy-900"
+                        className="block flex-1 py-2 text-sm font-medium text-ink-900"
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.label}
@@ -193,14 +193,14 @@ export function Navbar() {
         initial={false}
         animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
         transition={{ duration: 0.4, ease: EASE }}
-        className="overflow-hidden bg-navy-900 text-center text-xs text-slate-300"
+        className="overflow-hidden bg-ink-900 text-center text-xs text-slate-300"
       >
         <div className="px-4 py-1.5">
-          <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="hover:text-gold-400">
+          <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="hover:text-accent-400">
             {settings.phone}
           </a>
           {" · "}
-          <a href={`mailto:${settings.email}`} className="hover:text-gold-400">
+          <a href={`mailto:${settings.email}`} className="hover:text-accent-400">
             {settings.email}
           </a>
         </div>

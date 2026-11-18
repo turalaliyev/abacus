@@ -14,8 +14,8 @@ import { prefersReducedMotion } from "../../lib/motion"
  * Lazy-loaded by Hero so three.js stays out of the initial bundle.
  */
 
-const GOLD = new THREE.Color("#d4af37")
-const NAVY = new THREE.Color("#071525")
+const GOLD = new THREE.Color("#ff5a1f")
+const NAVY = new THREE.Color("#0a0a0d")
 
 const SEGMENTS_X = 72
 const SEGMENTS_Y = 44

@@ -5,7 +5,7 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
   const { i18n } = useTranslation()
 
   return (
-    <div className={`flex items-center gap-1 rounded-lg border border-slate-200 bg-white p-1 ${className}`}>
+    <div className={`flex items-center gap-1 rounded-lg border border-slate-200 bg-cream p-1 ${className}`}>
       {LOCALES.map(({ code, label }) => (
         <button
           key={code}
@@ -13,8 +13,8 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
           onClick={() => void i18n.changeLanguage(code)}
           className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
             i18n.language.startsWith(code)
-              ? 'bg-navy-900 text-gold-400'
-              : 'text-slate-600 hover:text-navy-900'
+              ? 'bg-ink-900 text-accent-400'
+              : 'text-slate-600 hover:text-ink-900'
           }`}
         >
           {label}

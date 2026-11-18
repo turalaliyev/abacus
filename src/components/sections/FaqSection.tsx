@@ -30,12 +30,12 @@ export function FaqSection() {
             <details
               key={item.id}
               name="faq"
-              className="group rounded-2xl border border-slate-200 bg-white px-6 transition-colors duration-300 open:border-gold-300 hover:border-gold-300"
+              className="group rounded-2xl border border-slate-200 bg-cream px-6 transition-colors duration-300 open:border-accent-300 hover:border-accent-300"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-semibold text-navy-900 [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-semibold text-ink-900 [&::-webkit-details-marker]:hidden">
                 {item.question}
                 <Plus
-                  className="h-5 w-5 shrink-0 text-gold-500 transition-transform duration-300 group-open:rotate-45"
+                  className="h-5 w-5 shrink-0 text-accent-500 transition-transform duration-300 group-open:rotate-45"
                   aria-hidden
                 />
               </summary>

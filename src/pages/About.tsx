@@ -18,7 +18,7 @@ export function About() {
         subtitle={t("pages.about.subtitle")}
       />
 
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           {settingsLoading || !settings ? (
             <TextBlockSkeleton lines={5} />
@@ -35,10 +35,10 @@ export function About() {
       <section className="bg-slate-50 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <AnimatedSection className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-navy-900 md:text-4xl">
+            <h2 className="text-3xl font-medium tracking-[-0.03em] text-ink-900 md:text-4xl">
               {t("sections.teamTitle")}
             </h2>
-            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gold-500" />
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-accent-500" />
           </AnimatedSection>
           {teamLoading || !team ? (
             <TeamGridSkeleton />

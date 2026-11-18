@@ -14,11 +14,11 @@ export function CtaSection() {
   const phone = settings?.phone ?? siteConfig.phone
 
   return (
-    <section className="grain relative isolate overflow-hidden bg-navy-950 py-24 lg:py-32">
+    <section className="grain relative isolate overflow-hidden bg-ink-950 py-24 lg:py-32">
       {/* Two slow, offset drifts read as a single living light source. */}
       <motion.div
         aria-hidden
-        className="absolute -left-1/4 top-0 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.18),transparent_65%)]"
+        className="absolute -left-1/4 top-0 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(255, 90, 31,0.18),transparent_65%)]"
         animate={{ x: [0, 90, 0], y: [0, 50, 0] }}
         transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -38,7 +38,7 @@ export function CtaSection() {
         <RevealText
           as="h2"
           text={t("sections.ctaTitle")}
-          className="text-3xl font-bold tracking-tight text-white md:text-5xl"
+          className="text-3xl font-medium tracking-[-0.03em] text-white md:text-5xl"
         />
 
         <motion.p

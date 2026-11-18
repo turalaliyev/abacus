@@ -20,16 +20,16 @@ type PartnersSectionProps = {
 
 function PartnerChip({ partner }: { partner: Partner }) {
   return (
-    <div className="flex h-20 min-w-56 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 backdrop-blur-sm transition-colors duration-300 hover:border-gold-400/40 hover:bg-white/10">
+    <div className="flex h-20 min-w-56 items-center gap-3 rounded-xl border border-white/10 bg-cream/5 px-5 backdrop-blur-sm transition-colors duration-300 hover:border-accent-400/40 hover:bg-cream/10">
       {partner.logo_url ? (
         <img
           src={partner.logo_url}
           alt={partner.name}
           loading="lazy"
-          className="h-11 w-11 shrink-0 rounded-lg bg-white/90 object-contain p-1"
+          className="h-11 w-11 shrink-0 rounded-lg bg-cream/90 object-contain p-1"
         />
       ) : (
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-gold-500/15 font-serif text-lg font-bold text-gold-400">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent-500/15 font-serif text-lg font-bold text-accent-400">
           {partner.name.charAt(0)}
         </span>
       )}
@@ -50,8 +50,8 @@ export function PartnersSection({ marquee = false }: PartnersSectionProps) {
     const rowB = partners?.slice(half) ?? []
 
     return (
-      <section className="grain relative overflow-hidden bg-navy-950 py-20 lg:py-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.10),transparent_55%)]" />
+      <section className="grain relative overflow-hidden bg-ink-950 py-20 lg:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255, 90, 31,0.10),transparent_55%)]" />
 
         <div className="relative">
           <div className="mx-auto mb-12 max-w-7xl px-4 text-center lg:px-8">
@@ -60,7 +60,7 @@ export function PartnersSection({ marquee = false }: PartnersSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={inView}
               transition={{ duration: 0.7, ease: EASE }}
-              className="text-3xl font-bold tracking-tight text-white md:text-4xl"
+              className="text-3xl font-medium tracking-[-0.03em] text-white md:text-4xl"
             >
               {t("sections.partnersTitle")}
             </motion.h2>
@@ -73,7 +73,7 @@ export function PartnersSection({ marquee = false }: PartnersSectionProps) {
             >
               {t("sections.partnersSubtitle")}
             </motion.p>
-            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gold-500" />
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-accent-500" />
           </div>
 
           {isLoading || !partners ? (
@@ -106,7 +106,7 @@ export function PartnersSection({ marquee = false }: PartnersSectionProps) {
   }
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="bg-cream py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionTitle
           title={t("sections.partnersTitle")}
@@ -128,12 +128,12 @@ export function PartnersSection({ marquee = false }: PartnersSectionProps) {
                     />
                   ) : (
                     <div className="grid h-28 w-full place-items-center sm:h-32">
-                      <span className="font-serif text-3xl font-bold text-navy-900/25">
+                      <span className="font-serif text-3xl font-bold text-ink-900/25">
                         {partner.name.charAt(0)}
                       </span>
                     </div>
                   )}
-                  <p className="mt-3 line-clamp-2 min-h-10 text-sm font-medium leading-snug text-navy-900">
+                  <p className="mt-3 line-clamp-2 min-h-10 text-sm font-medium leading-snug text-ink-900">
                     {partner.name}
                   </p>
                 </div>

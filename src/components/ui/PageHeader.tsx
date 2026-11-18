@@ -37,7 +37,7 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
   return (
     <section
       ref={ref}
-      className="grain relative isolate overflow-hidden bg-navy-950 py-20 lg:py-28"
+      className="grain relative isolate overflow-hidden bg-ink-950 py-20 lg:py-28"
     >
       {/*
         Gradient is always the base layer — if the photo is missing or fails
@@ -45,7 +45,7 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
       */}
       <motion.div
         style={{ y: bgY }}
-        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(212,175,55,0.14),transparent_45%),radial-gradient(circle_at_10%_90%,rgba(26,74,115,0.5),transparent_45%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(255, 90, 31,0.14),transparent_45%),radial-gradient(circle_at_10%_90%,rgba(26,74,115,0.5),transparent_45%)]"
       />
       {showImage && (
         <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10 scale-110">
@@ -56,7 +56,7 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
             className="h-full w-full object-cover"
             onError={() => setImageFailed(true)}
           />
-          <div className="absolute inset-0 bg-navy-950/80" />
+          <div className="absolute inset-0 bg-ink-950/80" />
         </motion.div>
       )}
 
@@ -65,7 +65,7 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
         className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px]"
         aria-hidden
       />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-navy-950 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-ink-950 to-transparent" />
 
       <motion.div
         style={{ y: contentY, opacity: fade }}
@@ -77,17 +77,17 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
           transition={{ duration: 0.5, ease: EASE }}
           className="mb-5 flex items-center gap-1.5 text-sm text-slate-400"
         >
-          <Link to="/" className="transition-colors hover:text-gold-400">
+          <Link to="/" className="transition-colors hover:text-accent-400">
             {t("common.home")}
           </Link>
           <ChevronRight className="h-3.5 w-3.5" aria-hidden />
-          <span className="text-gold-400">{breadcrumb ?? title}</span>
+          <span className="text-accent-400">{breadcrumb ?? title}</span>
         </motion.nav>
 
         <RevealText
           as="h1"
           text={title}
-          className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          className="text-3xl font-medium tracking-[-0.03em] text-white md:text-5xl lg:text-6xl"
         />
 
         {subtitle && (
@@ -105,7 +105,7 @@ export function PageHeader({ title, subtitle, breadcrumb, image }: PageHeaderPro
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-          className="mt-7 h-1 w-20 origin-left rounded-full bg-gradient-to-r from-gold-600 to-gold-300"
+          className="mt-7 h-1 w-20 origin-left rounded-full bg-gradient-to-r from-accent-600 to-accent-300"
         />
       </motion.div>
     </section>

@@ -54,11 +54,11 @@ export function StatsBar() {
   return (
     <section
       ref={sectionRef}
-      className="grain relative overflow-hidden bg-navy-900"
+      className="grain relative overflow-hidden bg-ink-900"
     >
       <motion.div
         style={{ y: glowY }}
-        className="absolute inset-x-0 -inset-y-1/4 bg-[radial-gradient(ellipse_at_50%_50%,rgba(212,175,55,0.14),transparent_60%)]"
+        className="absolute inset-x-0 -inset-y-1/4 bg-[radial-gradient(ellipse_at_50%_50%,rgba(255, 90, 31,0.14),transparent_60%)]"
         aria-hidden
       />
 

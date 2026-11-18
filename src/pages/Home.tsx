@@ -49,7 +49,7 @@ export function Home() {
       <ServicesGrid />
       <WhyUsSection />
 
-      <section ref={aboutRef} className="overflow-hidden bg-white py-20 lg:py-28">
+      <section ref={aboutRef} className="overflow-hidden bg-cream py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 lg:grid-cols-2 lg:gap-16 lg:px-8">
           {isLoading || !settings ? (
             <>
@@ -64,7 +64,7 @@ export function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={inView}
                   transition={{ duration: 0.5, ease: EASE }}
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600"
+                  className="eyebrow"
                 >
                   {t("sections.aboutLabel")}
                 </motion.span>
@@ -72,7 +72,7 @@ export function Home() {
                 <RevealText
                   as="h2"
                   text={settings.about_title}
-                  className="mt-3 text-3xl font-bold tracking-tight text-navy-900 md:text-4xl"
+                  className="mt-3 text-[34px] font-medium leading-[1.05] tracking-[-0.03em] text-ink-900 md:text-[44px]"
                 />
 
                 <motion.div
@@ -106,7 +106,7 @@ export function Home() {
                   transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
                   className="mt-8"
                 >
-                  <Button to="/haqqimizda" variant="ghost" className="border border-navy-900/15">
+                  <Button to="/haqqimizda" variant="ghost" className="border border-ink-900/15">
                     {t("common.learnMore")}
                   </Button>
                 </motion.div>
@@ -118,7 +118,7 @@ export function Home() {
                   whileInView="visible"
                   viewport={inView}
                   variants={revealClip}
-                  className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 to-navy-700 p-1 shadow-2xl"
+                  className="aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-ink-900 to-ink-700 p-1 shadow-2xl"
                 >
                   {aboutImage ? (
                     <motion.img
@@ -129,18 +129,18 @@ export function Home() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="grid h-full place-items-center rounded-xl bg-[radial-gradient(circle_at_30%_30%,rgba(212,175,55,0.2),transparent_50%)]">
-                      <span className="font-serif text-8xl font-bold text-gold-400/90">A</span>
+                    <div className="grid h-full place-items-center rounded-xl bg-[radial-gradient(circle_at_30%_30%,rgba(255, 90, 31,0.2),transparent_50%)]">
+                      <span className="font-serif text-8xl font-bold text-accent-400/90">A</span>
                     </div>
                   )}
                 </motion.div>
 
                 <motion.div
                   style={{ y: badgeY }}
-                  className="absolute -bottom-6 -left-6 rounded-xl bg-gold-500 px-6 py-4 shadow-xl shadow-gold-500/20"
+                  className="absolute -bottom-6 -left-6 rounded-xl bg-accent-500 px-6 py-4 shadow-xl shadow-accent-500/20"
                 >
-                  <div className="font-serif text-3xl font-bold text-navy-950">{yearsActive}+</div>
-                  <div className="text-sm font-medium text-navy-900">
+                  <div className="font-serif text-3xl font-bold text-ink-950">{yearsActive}+</div>
+                  <div className="text-sm font-medium text-ink-900">
                     {t("common.yearsExperience")}
                   </div>
                 </motion.div>

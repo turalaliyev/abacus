@@ -39,7 +39,7 @@ export function ServiceDetail() {
   return (
     <>
       <PageHeader title={title} breadcrumb={title} image={heroImage} />
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {isLoading || !service ? (
             <div className="space-y-4">
@@ -80,7 +80,7 @@ export function ServiceDetail() {
 
                   {otherServices.length > 0 && (
                     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-                      <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-navy-900">
+                      <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-ink-900">
                         {t("pages.serviceDetail.otherServices")}
                       </h4>
                       <ul className="space-y-1">
@@ -88,7 +88,7 @@ export function ServiceDetail() {
                           <li key={s.href}>
                             <Link
                               to={s.href}
-                              className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-white hover:text-gold-600"
+                              className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-slate-600 transition-colors hover:bg-cream hover:text-accent-600"
                             >
                               {s.label}
                               <ArrowRight className="h-4 w-4 shrink-0" />

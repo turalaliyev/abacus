@@ -16,7 +16,7 @@ export function ServicesGrid() {
   const { data: services, isLoading } = useLocalizedServices()
 
   return (
-    <section className="relative bg-white py-20 lg:py-28">
+    <section className="relative bg-cream py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionTitle
           eyebrow={t("sections.servicesEyebrow")}
@@ -45,9 +45,9 @@ export function ServicesGrid() {
                 <TiltCard className="group h-full">
                   <Link
                     to={serviceHref(service.slug)}
-                    className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-card)] transition-[border-color,box-shadow] duration-500 hover:border-gold-300 hover:shadow-[var(--shadow-card-hover)]"
+                    className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-cream shadow-[var(--shadow-card)] transition-[border-color,box-shadow] duration-500 hover:border-accent-300 hover:shadow-[var(--shadow-card-hover)]"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-navy-900">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-ink-900">
                       <img
                         src={service.image_url || serviceImageUrl(service.slug)}
                         alt={service.title}
@@ -67,13 +67,13 @@ export function ServicesGrid() {
                           }
                         }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/25 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/25 to-transparent" />
 
-                      <span className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-navy-950/50 text-gold-400 backdrop-blur-md">
+                      <span className="absolute left-4 top-4 grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-ink-950/50 text-accent-400 backdrop-blur-md">
                         <ServiceIcon name={service.icon} className="h-5 w-5" />
                       </span>
 
-                      <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/80 backdrop-blur-md transition-all duration-500 group-hover:bg-gold-500 group-hover:text-navy-950">
+                      <span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-cream/10 text-white/80 backdrop-blur-md transition-all duration-500 group-hover:bg-accent-500 group-hover:text-ink-950">
                         <ArrowUpRight className="h-4 w-4" />
                       </span>
 
@@ -86,7 +86,7 @@ export function ServicesGrid() {
                       <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">
                         {service.summary || stripHtml(service.description)}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600">
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600">
                         {t("common.learnMore")}
                         <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>

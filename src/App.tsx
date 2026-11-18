@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Seo } from "./components/seo/Seo"
 import { SmoothScroll } from "./components/ui/SmoothScroll"
@@ -16,9 +17,13 @@ import { Contact } from "./pages/Contact"
 import { Inquiry } from "./pages/Inquiry"
 import { NotFound } from "./pages/NotFound"
 
-function App() {
+// The admin panel (antd, tiptap, its own i18n) is split into its own chunk and
+// only downloaded when someone opens /admin.
+const AdminApp = lazy(() => import("./admin/AdminApp"))
+
+function PublicSite() {
   return (
-    <BrowserRouter>
+    <>
       <Splash />
       <Seo />
       <SmoothScroll />
@@ -40,6 +45,30 @@ function App() {
           <Route path="/muraciet" element={<Inquiry />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+      </Routes>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/admin/*"
+          element={
+            <Suspense
+              fallback={
+                <div className="grid min-h-screen place-items-center bg-slate-100 text-sm text-slate-500">
+                  Yüklənir…
+                </div>
+              }
+            >
+              <AdminApp />
+            </Suspense>
+          }
+        />
+        <Route path="/*" element={<PublicSite />} />
       </Routes>
     </BrowserRouter>
   )

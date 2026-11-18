@@ -36,6 +36,136 @@ export type PageSeo = {
   image?: string
   /** Unmatched paths render this same route with a 200, so crawlers need an explicit signal to skip it. */
   noindex?: boolean
+  /**
+   * Search phrases this page should rank for. Several variants per page
+   * (Azerbaijani, English, Russian), so a query phrased any of these ways has
+   * a matching target. Emitted as <meta name="keywords"> for engines that
+   * still read it, and used as the page's search-intent checklist.
+   */
+  keywords?: readonly string[]
+}
+
+/* ------------------------------------------------------------------ */
+/* Search variants                                                     */
+/* ------------------------------------------------------------------ */
+
+/** Brand and core terms that every page carries. */
+const CORE_KEYWORDS = [
+  'Abacus Audit',
+  'Abacus Audit And Consulting',
+  'auditor şirkəti Bakı',
+  'audit şirkəti Azərbaycan',
+  'AT/135 auditor',
+  'audit and consulting Baku',
+  'аудиторская компания Баку',
+]
+
+const PAGE_KEYWORDS: Record<string, readonly string[]> = {
+  '/': [
+    'audit xidmətləri Bakı',
+    'audit şirkəti Bakı',
+    'vergi məsləhəti Bakı',
+    'mühasibatlıq xidmətləri Bakı',
+    'konsaltinq şirkəti Bakı',
+    'maliyyə audit Azərbaycan',
+    'kadr kargüzarlığı Bakı',
+    'miqrasiya xidmətləri Bakı',
+    'şirkət qeydiyyatı Bakı',
+    'audit firm Baku',
+    'tax consulting Azerbaijan',
+    'accounting services Baku',
+    'налоговый консалтинг Азербайджан',
+    'бухгалтерские услуги Баку',
+  ],
+  '/haqqimizda': [
+    'audit şirkəti haqqında',
+    'Abacus Audit tarixçə',
+    'Bakı auditor şirkəti 2017',
+    'about Abacus Audit Baku',
+    'о компании Abacus Audit',
+  ],
+  '/niye-biz': [
+    'ən yaxşı audit şirkəti Bakı',
+    'niyə audit şirkəti seçmək',
+    'etibarlı auditor Bakı',
+    'why choose Abacus Audit',
+    'почему Abacus Audit',
+  ],
+  '/partnyorlar': [
+    'audit müştəriləri Bakı',
+    'Abacus Audit partnyorlar',
+    'Abacus Audit clients Baku',
+    'клиенты аудиторской компании Баку',
+  ],
+  '/xidmetler': [
+    'audit və konsaltinq xidmətləri',
+    'mühasibat və vergi xidmətləri Bakı',
+    'hüquqi və kadr xidmətləri Bakı',
+    'accounting and audit services Azerbaijan',
+    'аудит и консалтинг Баку',
+  ],
+  '/bloq': [
+    'vergi xəbərləri Azərbaycan',
+    'mühasibat blogu',
+    'audit məqalələri',
+    'Azerbaijan tax news',
+    'блог аудит Азербайджан',
+  ],
+  '/bloq/xeberler': [
+    'audit xəbərləri',
+    'vergi xəbərləri 2026',
+    'Azerbaijan audit news',
+    'новости аудита Азербайджан',
+  ],
+  '/bloq/qanunvericilik': [
+    'vergi qanunvericiliyi 2026',
+    'əmək məcəlləsi dəyişiklik',
+    'Azerbaijan tax law changes',
+    'изменения налогового законодательства Азербайджан',
+  ],
+  '/akademiya': [
+    'mühasibat kursu Bakı',
+    'maliyyə təlimi Bakı',
+    'dövlət satınalmaları təlim',
+    'accounting course Baku',
+    'курсы бухгалтерии Баку',
+  ],
+  '/kalkulyator': [
+    'əmək haqqı kalkulyatoru',
+    'gross net kalkulyator 2026',
+    'əmək haqqından vergi hesablama',
+    'salary calculator Azerbaijan',
+    'калькулятор зарплаты Азербайджан',
+  ],
+  '/elaqe': [
+    'Abacus Audit əlaqə',
+    'audit şirkəti ünvan Bakı',
+    'auditor telefon Bakı',
+    'contact Abacus Audit Baku',
+    'контакты Abacus Audit',
+  ],
+  '/muraciet': [
+    'audit təklifi almaq',
+    'konsaltinq sorğusu',
+    'free audit consultation Baku',
+    'бесплатная консультация аудит Баку',
+  ],
+}
+
+/** Service phrasings, filled in with each service's title. */
+const SERVICE_TEMPLATES = [
+  '{t} Bakı',
+  '{t} Azərbaycan',
+  '{t} şirkəti',
+  '{t} qiyməti',
+  'Abacus Audit: {t}',
+]
+
+function keywordsFor(path: string, serviceTitle?: string): string[] {
+  const base = serviceTitle
+    ? SERVICE_TEMPLATES.map((tpl) => tpl.replace('{t}', serviceTitle))
+    : PAGE_KEYWORDS[path] ?? []
+  return [...new Set([...base, ...CORE_KEYWORDS])]
 }
 
 const BRAND = 'Abacus Audit'
@@ -131,6 +261,7 @@ function serviceSeo(service: (typeof services)[number]): PageSeo {
     title: t(service.title),
     description: service.summary,
     image,
+    keywords: keywordsFor(path, service.title),
     breadcrumb: [
       { name: 'Xidmətlər', path: '/xidmetler' },
       { name: service.title, path },
@@ -153,7 +284,11 @@ function serviceSeo(service: (typeof services)[number]): PageSeo {
 
 /** Every canonical path on the site, in sitemap order. */
 export function allRoutes(): PageSeo[] {
-  const statics = Object.entries(staticPages).map(([path, meta]) => ({ ...meta, path }))
+  const statics = Object.entries(staticPages).map(([path, meta]) => ({
+    ...meta,
+    path,
+    keywords: keywordsFor(path),
+  }))
   const serviceRoutes = services.map(serviceSeo)
   // Slot the service detail pages directly after /xidmetler.
   const idx = statics.findIndex((r) => r.path === '/xidmetler')
@@ -170,7 +305,7 @@ export function getSeoForPath(pathname: string): PageSeo {
   }
 
   const staticMatch = staticPages[path]
-  if (staticMatch) return { ...staticMatch, path }
+  if (staticMatch) return { ...staticMatch, path, keywords: keywordsFor(path) }
 
   return {
     path,

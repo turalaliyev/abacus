@@ -58,7 +58,7 @@ export function RevealText({
         >
           <motion.span
             className={`inline-block ${
-              highlighted.has(word.toLowerCase().replace(/[.,:;!?]/g, "")) ? "text-gold-400" : ""
+              highlighted.has(word.toLowerCase().replace(/[.,:;!?]/g, "")) ? "text-accent-400" : ""
             }`}
             variants={{
               hidden: { y: "110%", opacity: 0 },

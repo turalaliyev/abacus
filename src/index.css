@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-950: #071525;
-  --color-navy-900: #0c2340;
-  --color-navy-800: #123456;
-  --color-navy-700: #1a4a73;
-  --color-navy-600: #2b6297;
+  --color-ink-950: #0a0a0d;
+  --color-ink-900: #111116;
+  --color-ink-800: #1c1c22;
+  --color-ink-700: #2f2f36;
+  --color-ink-600: #5e5e6b;
 
-  --color-gold-300: #e3c75f;
-  --color-gold-400: #d4af37;
-  --color-gold-500: #c9a227;
-  --color-gold-600: #a8861f;
-  --color-gold-700: #8a6d16;
+  --color-accent-300: #ff8a5c;
+  --color-accent-400: #ff7140;
+  --color-accent-500: #ff5a1f;
+  --color-accent-600: #c2410c;
+  --color-accent-700: #9a3412;
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  /* Serif display face carries the authority cue for an audit firm; Inter
-     stays on body copy for readability. */
-  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  /* Warm off-white page ground, as on the Nord reference site. */
+  --color-cream: #fffdf7;
 
-  --shadow-card: 0 1px 2px rgba(7, 21, 37, 0.04), 0 8px 24px -12px rgba(7, 21, 37, 0.18);
-  --shadow-card-hover: 0 2px 4px rgba(7, 21, 37, 0.05), 0 24px 48px -20px rgba(7, 21, 37, 0.28);
+  /* One sans family for display and body; a mono face for labels and numerals. */
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-serif: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-card: 0 1px 0 rgba(17, 17, 22, 0.04);
+  --shadow-card-hover: 0 18px 40px -24px rgba(17, 17, 22, 0.35);
 }
 
 @layer base {
@@ -30,7 +33,7 @@
   }
 
   body {
-    @apply bg-white text-slate-700 antialiased;
+    @apply bg-cream text-slate-600 antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
   }
@@ -39,19 +42,26 @@
   h2,
   h3 {
     font-family: var(--font-serif);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    color: var(--color-ink-900);
+  }
+
+  /* Hairline-first UI: borders instead of heavy shadows. */
+  hr {
+    border-color: rgba(17, 17, 22, 0.1);
   }
 
   /* Visible, brand-coloured focus ring for keyboard users. */
   :focus-visible {
-    outline: 2px solid var(--color-gold-500);
+    outline: 2px solid var(--color-accent-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
 
   ::selection {
-    background: var(--color-gold-400);
-    color: var(--color-navy-950);
+    background: var(--color-accent-400);
+    color: var(--color-ink-950);
   }
 }
 
@@ -75,15 +85,35 @@
 }
 
 @layer utilities {
-  /* Gold foil text, used sparingly on hero and section accents. */
+  /* Mono overline with an accent dot, the reference site's section label. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-600);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background: var(--color-accent-500);
+  }
+
+  /* Accent foil text, used sparingly on hero and section accents. */
   .text-foil {
     background: linear-gradient(
       100deg,
-      #a8861f 0%,
-      #e3c75f 22%,
-      #fff6d5 38%,
-      #e3c75f 54%,
-      #a8861f 78%
+      #c2410c 0%,
+      #ff8a5c 22%,
+      #ffe3d6 38%,
+      #ff8a5c 54%,
+      #c2410c 78%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -136,7 +166,7 @@
 }
 
 #seo-fallback h1 {
-  color: #0c2340;
+  color: #111116;
   font-size: 1.875rem;
   margin-bottom: 0.75rem;
 }
@@ -150,7 +180,7 @@
 }
 
 #seo-fallback a {
-  color: #a8861f;
+  color: #c2410c;
 }
 
 #seo-fallback footer {
@@ -173,7 +203,7 @@
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0c2340;
+  color: #111116;
   letter-spacing: -0.015em;
 }
 
@@ -182,7 +212,7 @@
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 600;
-  color: #0c2340;
+  color: #111116;
 }
 
 .rich-text ul,
@@ -204,17 +234,17 @@
 }
 
 .rich-text li::marker {
-  color: var(--color-gold-500);
+  color: var(--color-accent-500);
 }
 
 .rich-text a {
-  color: #a8861f;
+  color: #c2410c;
   text-decoration: underline;
 }
 
 .rich-text strong {
   font-weight: 600;
-  color: #0c2340;
+  color: #111116;
 }
 
 .rich-text em {

@@ -28,18 +28,18 @@ function OptionBox({
       onClick={onClick}
       className={`flex w-full cursor-pointer items-center gap-2.5 rounded-xl border-2 px-4 py-4 text-left text-base transition-all select-none ${
         active
-          ? 'border-gold-500 bg-gold-50/50'
-          : 'border-slate-200 bg-white hover:border-slate-300'
+          ? 'border-accent-500 bg-accent-50/50'
+          : 'border-slate-200 bg-cream hover:border-slate-300'
       }`}
     >
       <span
         className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full border-2 ${
-          active ? 'border-gold-500' : 'border-slate-300'
+          active ? 'border-accent-500' : 'border-slate-300'
         }`}
       >
-        {active && <span className="h-2.5 w-2.5 rounded-full bg-gold-500" />}
+        {active && <span className="h-2.5 w-2.5 rounded-full bg-accent-500" />}
       </span>
-      <span className="text-navy-900">{children}</span>
+      <span className="text-ink-900">{children}</span>
     </button>
   )
 }
@@ -77,7 +77,7 @@ function ResultTable({ result }: { result: SalaryResult }) {
           <tr>
             <th
               colSpan={2}
-              className="border-b-2 border-slate-200 bg-slate-100 px-4 py-3.5 text-center text-lg font-semibold text-navy-900"
+              className="border-b-2 border-slate-200 bg-slate-100 px-4 py-3.5 text-center text-lg font-semibold text-ink-900"
             >
               {t('calculator.employee')}
             </th>
@@ -94,7 +94,7 @@ function ResultTable({ result }: { result: SalaryResult }) {
               </td>
               <td
                 className={`border-b border-slate-100 px-4 py-3 text-right text-sm ${
-                  row.highlight ? 'text-base font-bold text-navy-900' : 'font-semibold text-navy-900'
+                  row.highlight ? 'text-base font-bold text-ink-900' : 'font-semibold text-ink-900'
                 }`}
               >
                 {formatMoney(row.value)}
@@ -106,7 +106,7 @@ function ResultTable({ result }: { result: SalaryResult }) {
           <tr>
             <th
               colSpan={2}
-              className="border-b-2 border-slate-200 bg-slate-100 px-4 py-3.5 text-center text-lg font-semibold text-navy-900"
+              className="border-b-2 border-slate-200 bg-slate-100 px-4 py-3.5 text-center text-lg font-semibold text-ink-900"
             >
               {t('calculator.employer')}
             </th>
@@ -123,7 +123,7 @@ function ResultTable({ result }: { result: SalaryResult }) {
               </td>
               <td
                 className={`border-b border-slate-100 px-4 py-3 text-right text-sm ${
-                  row.highlight ? 'text-base font-bold text-navy-900' : 'font-semibold text-navy-900'
+                  row.highlight ? 'text-base font-bold text-ink-900' : 'font-semibold text-ink-900'
                 }`}
               >
                 {formatMoney(row.value)}
@@ -171,10 +171,10 @@ export function Calculator() {
         breadcrumb={t('footer.links.calculator')}
       />
 
-      <section className="bg-white py-12 lg:py-20">
+      <section className="bg-cream py-12 lg:py-20">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <AnimatedSection>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <div className="rounded-2xl border border-slate-200 bg-cream p-6 shadow-sm md:p-10">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <OptionBox active={calcType === 'gross'} onClick={() => setCalcType('gross')}>
                   {t('calculator.grossToNet')}
@@ -213,7 +213,7 @@ export function Calculator() {
                       min={0}
                       value={salary}
                       onChange={(e) => setSalary(e.target.value)}
-                      className="min-w-0 flex-1 border-none text-2xl text-navy-900 outline-none"
+                      className="min-w-0 flex-1 border-none text-2xl text-ink-900 outline-none"
                     />
                     <span className="ml-2 shrink-0 text-xl text-slate-400">₼</span>
                   </div>
@@ -229,7 +229,7 @@ export function Calculator() {
                       max={100}
                       value={unionFee}
                       onChange={(e) => setUnionFee(e.target.value)}
-                      className="min-w-0 flex-1 border-none text-2xl text-navy-900 outline-none"
+                      className="min-w-0 flex-1 border-none text-2xl text-ink-900 outline-none"
                     />
                     <span className="ml-2 shrink-0 text-xl text-slate-400">%</span>
                   </div>
@@ -237,12 +237,12 @@ export function Calculator() {
               </div>
 
               <div className="mt-4">
-                <label className="flex cursor-pointer items-center gap-2.5 text-sm text-navy-900">
+                <label className="flex cursor-pointer items-center gap-2.5 text-sm text-ink-900">
                   <input
                     type="checkbox"
                     checked={taxBenefit}
                     onChange={(e) => setTaxBenefit(e.target.checked)}
-                    className="h-4 w-4 rounded accent-gold-500"
+                    className="h-4 w-4 rounded accent-accent-500"
                   />
                   {t('calculator.taxBenefit')}
                 </label>
@@ -250,7 +250,7 @@ export function Calculator() {
                   <select
                     value={guzesht}
                     onChange={(e) => setGuzesht(Number(e.target.value))}
-                    className="mt-2.5 w-full max-w-3xl rounded-lg border border-slate-200 px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                    className="mt-2.5 w-full max-w-3xl rounded-lg border border-slate-200 px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20"
                   >
                     {TAX_BENEFIT_OPTIONS.map((opt, i) => (
                       <option key={i} value={opt.value}>

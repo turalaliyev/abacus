@@ -32,17 +32,17 @@ export function Footer() {
 
   if (isLoading || !settings) {
     return (
-      <footer className="bg-navy-950 py-16">
+      <footer className="bg-ink-950 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <Skeleton className="h-10 w-40 bg-white/10" />
-          <Skeleton className="mt-6 h-4 w-full max-w-sm bg-white/10" />
+          <Skeleton className="h-10 w-40 bg-cream/10" />
+          <Skeleton className="mt-6 h-4 w-full max-w-sm bg-cream/10" />
         </div>
       </footer>
     )
   }
 
   return (
-    <footer className="bg-navy-950 text-slate-300">
+    <footer className="bg-ink-950 text-slate-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-1">
           <div className="flex items-center gap-2">
@@ -51,7 +51,7 @@ export function Footer() {
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
             {settings.tagline}. {t("footer.taglineExtra")}
           </p>
-          <p className="mt-4 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
+          <p className="mt-4 rounded-lg border border-white/10 bg-cream/5 px-3 py-2 text-xs leading-relaxed text-slate-400">
             {t("trust.licenseFooter", {
               authority: siteConfig.license.authority,
               number: siteConfig.license.number,
@@ -59,16 +59,16 @@ export function Footer() {
             })}
           </p>
           <div className="mt-5 flex gap-3">
-            <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.facebook_url} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="rounded-full bg-cream/5 p-2 transition-colors hover:bg-accent-500 hover:text-ink-950">
               <Facebook className="h-4 w-4" />
             </a>
-            <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.instagram_url} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-full bg-cream/5 p-2 transition-colors hover:bg-accent-500 hover:text-ink-950">
               <Instagram className="h-4 w-4" />
             </a>
-            <a href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full bg-cream/5 p-2 transition-colors hover:bg-accent-500 hover:text-ink-950">
               <Linkedin className="h-4 w-4" />
             </a>
-            <a href={settings.whatsapp_url} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="rounded-full bg-white/5 p-2 transition-colors hover:bg-gold-500 hover:text-navy-950">
+            <a href={settings.whatsapp_url} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="rounded-full bg-cream/5 p-2 transition-colors hover:bg-accent-500 hover:text-ink-950">
               <MessageCircle className="h-4 w-4" />
             </a>
           </div>
@@ -81,7 +81,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             {services.map((s) => (
               <li key={s.href}>
-                <Link to={s.href} className="text-slate-400 transition-colors hover:text-gold-400">
+                <Link to={s.href} className="text-slate-400 transition-colors hover:text-accent-400">
                   {s.label}
                 </Link>
               </li>
@@ -96,7 +96,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             {companyLinks.map((link) => (
               <li key={link.href}>
-                <Link to={link.href} className="text-slate-400 transition-colors hover:text-gold-400">
+                <Link to={link.href} className="text-slate-400 transition-colors hover:text-accent-400">
                   {link.label}
                 </Link>
               </li>
@@ -110,19 +110,19 @@ export function Footer() {
           </h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-400" />
               <span className="text-slate-400">{settings.address}</span>
             </li>
             <li className="flex items-start gap-3">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
-              <a href={`tel:${settings.phone}`} className="text-slate-400 transition-colors hover:text-gold-400">{settings.phone}</a>
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent-400" />
+              <a href={`tel:${settings.phone}`} className="text-slate-400 transition-colors hover:text-accent-400">{settings.phone}</a>
             </li>
             <li className="flex items-start gap-3">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
-              <a href={`mailto:${settings.email}`} className="text-slate-400 transition-colors hover:text-gold-400">{settings.email}</a>
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent-400" />
+              <a href={`mailto:${settings.email}`} className="text-slate-400 transition-colors hover:text-accent-400">{settings.email}</a>
             </li>
             <li className="flex items-start gap-3">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent-400" />
               <span className="text-slate-400">
                 {siteConfig.hours.days}
                 <br />

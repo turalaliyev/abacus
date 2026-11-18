@@ -44,7 +44,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="grain relative isolate min-h-[92vh] overflow-hidden bg-navy-950"
+      className="grain relative isolate min-h-[92vh] overflow-hidden bg-ink-950"
     >
       <motion.div style={{ scale: bgScale }} className="absolute inset-0">
         {showVideo ? (
@@ -54,7 +54,7 @@ export function Hero() {
               left blank in the CMS, so this gradient — not a blank frame —
               is what a slow connection sees until the video can play.
             */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.16),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(26,74,115,0.55),transparent_40%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255, 90, 31,0.16),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(26,74,115,0.55),transparent_40%)]" />
             <video
               key={videoUrl}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
@@ -74,7 +74,7 @@ export function Hero() {
         ) : (
           <Suspense
             fallback={
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.16),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(26,74,115,0.55),transparent_40%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255, 90, 31,0.16),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(26,74,115,0.55),transparent_40%)]" />
             }
           >
             <DataSurface />
@@ -95,8 +95,8 @@ export function Hero() {
       )}
 
       {/* Scrim: strong behind the copy, clearing toward the right. */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/35" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy-950 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/35" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950 to-transparent" />
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
@@ -108,7 +108,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: EASE }}
-              className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-4 py-1.5 text-xs font-medium text-gold-300 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-accent-500/30 bg-accent-500/10 px-4 py-1.5 text-xs font-medium text-accent-300 backdrop-blur-sm"
             >
               <Award className="h-3.5 w-3.5" aria-hidden />
               {settings.hero_badge}
@@ -119,7 +119,7 @@ export function Hero() {
             as="h1"
             text={settings.hero_title}
             delay={0.15}
-            className="mt-6 text-4xl font-bold leading-[1.06] text-white md:text-6xl lg:text-7xl"
+            className="mt-6 text-[clamp(48px,6.6vw,80px)] font-medium leading-[1.02] tracking-[-0.03em] text-white"
           />
 
           <motion.p
@@ -178,7 +178,7 @@ export function Hero() {
                 <dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                   {item.term}
                 </dt>
-                <dd className="mt-1 text-sm font-semibold text-gold-300">{item.desc}</dd>
+                <dd className="mt-1 text-sm font-semibold text-accent-300">{item.desc}</dd>
               </motion.div>
             ))}
           </motion.dl>
@@ -196,7 +196,7 @@ export function Hero() {
           transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut" }}
           className="flex h-10 w-6 items-start justify-center rounded-full border border-white/25 p-1.5"
         >
-          <span className="h-2 w-1 rounded-full bg-gold-400" />
+          <span className="h-2 w-1 rounded-full bg-accent-400" />
         </motion.span>
       </motion.div>
     </section>

@@ -7,7 +7,7 @@ import { Button } from "../components/ui/Button"
 import { getSupabase, isSupabaseConfigured } from "../lib/supabase"
 
 const INPUT_CLS =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 placeholder:text-slate-400"
+  "w-full rounded-xl border border-slate-200 bg-cream px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 placeholder:text-slate-400"
 
 type Step1 = { fullName: string; companyName: string; phone: string; email: string }
 type Step2 = { services: string[]; goal: string; timeline: string }
@@ -31,9 +31,9 @@ function StepDots({ current }: { current: number }) {
           key={i}
           className={`rounded-full transition-all duration-300 ${
             i < current
-              ? "h-2 w-2 bg-gold-500"
+              ? "h-2 w-2 bg-accent-500"
               : i === current
-              ? "h-2 w-6 bg-gold-500"
+              ? "h-2 w-6 bg-accent-500"
               : "h-2 w-2 bg-slate-200"
           }`}
         />
@@ -45,7 +45,7 @@ function StepDots({ current }: { current: number }) {
 function FieldLabel({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
     <div className="mb-2">
-      <label className="block text-sm font-semibold text-navy-900">{children}</label>
+      <label className="block text-sm font-semibold text-ink-900">{children}</label>
       {hint && <p className="mt-0.5 text-xs text-slate-500">{hint}</p>}
     </div>
   )
@@ -66,8 +66,8 @@ function ServiceChip({
       onClick={onClick}
       className={`rounded-xl border px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
         selected
-          ? "border-gold-400 bg-gold-50 text-gold-700 shadow-sm"
-          : "border-slate-200 bg-white text-slate-600 hover:border-gold-300 hover:bg-slate-50"
+          ? "border-accent-400 bg-accent-50 text-accent-700 shadow-sm"
+          : "border-slate-200 bg-cream text-slate-600 hover:border-accent-300 hover:bg-slate-50"
       }`}
     >
       {selected && <span className="mr-1.5">✓</span>}
@@ -147,12 +147,12 @@ export function Inquiry() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-2xl bg-white p-10 text-center shadow-sm border border-slate-100"
+              className="rounded-2xl bg-cream p-10 text-center shadow-sm border border-slate-100"
             >
               <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-50">
                 <CheckCircle2 className="h-10 w-10 text-green-500" />
               </div>
-              <h2 className="mt-6 text-2xl font-bold text-navy-900">
+              <h2 className="mt-6 text-2xl font-bold text-ink-900">
                 {t("inquiry.successTitle")}
               </h2>
               <p className="mx-auto mt-3 max-w-sm text-slate-600 leading-relaxed">
@@ -162,24 +162,24 @@ export function Inquiry() {
                 <Button to="/">
                   <Home className="h-4 w-4" /> {t("common.backHome")}
                 </Button>
-                <Button to="/elaqe" variant="ghost" className="border border-navy-900/15">
+                <Button to="/elaqe" variant="ghost" className="border border-ink-900/15">
                   {t("common.contactUs")} <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
             </motion.div>
           ) : (
-            <div className="rounded-2xl bg-white shadow-sm border border-slate-100 overflow-hidden">
+            <div className="rounded-2xl bg-cream shadow-sm border border-slate-100 overflow-hidden">
               {/* Header */}
-              <div className="bg-navy-900 px-8 py-6 text-white">
+              <div className="bg-ink-900 px-8 py-6 text-white">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gold-400 uppercase tracking-wider">
+                  <span className="text-xs font-medium text-accent-400 uppercase tracking-wider">
                     {t("inquiry.step")} {step + 1} {t("inquiry.of")} {TOTAL_STEPS}
                   </span>
                   <span className="text-sm font-semibold text-white/90">{stepTitles[step]}</span>
                 </div>
-                <div className="mt-3 h-1 rounded-full bg-white/20">
+                <div className="mt-3 h-1 rounded-full bg-cream/20">
                   <div
-                    className="h-full rounded-full bg-gold-500 transition-all duration-500"
+                    className="h-full rounded-full bg-accent-500 transition-all duration-500"
                     style={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
                   />
                 </div>
@@ -286,8 +286,8 @@ export function Inquiry() {
                               onClick={() => setS2((p) => ({ ...p, timeline: key }))}
                               className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-all ${
                                 s2.timeline === key
-                                  ? "border-gold-400 bg-gold-50 text-gold-700"
-                                  : "border-slate-200 bg-white text-slate-600 hover:border-gold-300"
+                                  ? "border-accent-400 bg-accent-50 text-accent-700"
+                                  : "border-slate-200 bg-cream text-slate-600 hover:border-accent-300"
                               }`}
                             >
                               {s2.timeline === key && <span className="mr-1.5">✓</span>}
@@ -318,8 +318,8 @@ export function Inquiry() {
                               onClick={() => setS3((p) => ({ ...p, budget: key }))}
                               className={`rounded-xl border px-4 py-3 text-left text-sm font-medium transition-all ${
                                 s3.budget === key
-                                  ? "border-gold-400 bg-gold-50 text-gold-700"
-                                  : "border-slate-200 bg-white text-slate-600 hover:border-gold-300"
+                                  ? "border-accent-400 bg-accent-50 text-accent-700"
+                                  : "border-slate-200 bg-cream text-slate-600 hover:border-accent-300"
                               }`}
                             >
                               {s3.budget === key && <span className="mr-1.5">✓</span>}
@@ -341,7 +341,7 @@ export function Inquiry() {
 
                       {/* Summary strip */}
                       <div className="rounded-xl bg-slate-50 border border-slate-100 p-4 text-xs text-slate-500 space-y-1">
-                        <p><span className="font-semibold text-navy-900">{s1.fullName}</span>{s1.companyName ? ` · ${s1.companyName}` : ""}</p>
+                        <p><span className="font-semibold text-ink-900">{s1.fullName}</span>{s1.companyName ? ` · ${s1.companyName}` : ""}</p>
                         <p>{s1.phone} · {s1.email}</p>
                         <p>{s2.services.map((k) => t(`inquiry.services.${k}`)).join(", ")}</p>
                       </div>
@@ -370,7 +370,7 @@ export function Inquiry() {
                       type="button"
                       onClick={() => setStep((s) => s + 1)}
                       disabled={step === 0 ? !canProceedStep0 : !canProceedStep1}
-                      className="inline-flex items-center gap-2 rounded-xl bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-950 shadow-md shadow-gold-500/25 transition-all hover:bg-gold-400 disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-6 py-2.5 text-sm font-semibold text-ink-950 shadow-md shadow-accent-500/25 transition-all hover:bg-accent-400 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       {t("inquiry.next")} <ArrowRight className="h-4 w-4" />
                     </button>
@@ -379,7 +379,7 @@ export function Inquiry() {
                       type="button"
                       onClick={handleSubmit}
                       disabled={!canSubmit || loading}
-                      className="inline-flex items-center gap-2 rounded-xl bg-gold-500 px-6 py-2.5 text-sm font-semibold text-navy-950 shadow-md shadow-gold-500/25 transition-all hover:bg-gold-400 disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="inline-flex items-center gap-2 rounded-xl bg-accent-500 px-6 py-2.5 text-sm font-semibold text-ink-950 shadow-md shadow-accent-500/25 transition-all hover:bg-accent-400 disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       {loading ? t("inquiry.submitting") : t("inquiry.submit")}
                       <Send className="h-4 w-4" />

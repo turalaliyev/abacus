@@ -64,6 +64,9 @@ export function Seo() {
     document.title = seo.title
 
     upsertTag('meta', { key: 'name', value: 'description' }, { content: seo.description })
+    if (seo.keywords?.length) {
+      upsertTag('meta', { key: 'name', value: 'keywords' }, { content: seo.keywords.join(', ') })
+    }
     upsertTag('link', { key: 'rel', value: 'canonical' }, { href: canonical })
 
     if (seo.noindex) {

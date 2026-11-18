@@ -35,19 +35,19 @@ export function TrustBar() {
   ]
 
   return (
-    <section className="border-b border-slate-200 bg-white">
+    <section className="border-b border-slate-200 bg-cream">
       <StaggerContainer className="mx-auto grid max-w-7xl gap-px overflow-hidden px-4 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         {items.map(({ icon: Icon, title, value }) => (
           <StaggerItem key={title}>
             <div className="flex items-start gap-4 px-2 py-3">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900/5 text-gold-600">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-900/5 text-accent-600">
                 <Icon className="h-5 w-5" />
               </span>
               <div className="min-w-0">
                 <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   {title}
                 </div>
-                <div className="mt-1 text-sm font-semibold leading-snug text-navy-900">
+                <div className="mt-1 text-sm font-semibold leading-snug text-ink-900">
                   {value}
                 </div>
               </div>

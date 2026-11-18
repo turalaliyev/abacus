@@ -19,10 +19,10 @@ export function Contact() {
   return (
     <>
       <PageHeader title={t("pages.contact.title")} subtitle={t("pages.contact.subtitle")} />
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-cream py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-2 lg:px-8">
           <AnimatedSection>
-            <h2 className="text-2xl font-bold text-navy-900">{t("pages.contact.writeUs")}</h2>
+            <h2 className="text-2xl font-bold text-ink-900">{t("pages.contact.writeUs")}</h2>
             <p className="mt-2 text-slate-600">{t("pages.contact.formHint")}</p>
 
             {submitted ? (
@@ -36,30 +36,30 @@ export function Contact() {
                   <input
                     required
                     placeholder={t("pages.contact.name")}
-                    className="rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                    className="rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20"
                   />
                   <input
                     required
                     type="tel"
                     placeholder={t("pages.contact.phone")}
-                    className="rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                    className="rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20"
                   />
                 </div>
                 <input
                   required
                   type="email"
                   placeholder={t("pages.contact.email")}
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20"
                 />
                 <textarea
                   required
                   rows={5}
                   placeholder={t("pages.contact.message")}
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition-colors focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20"
                 />
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-gold-500 px-6 py-3 text-sm font-semibold text-navy-950 shadow-lg shadow-gold-500/25 transition-all duration-300 hover:bg-gold-400"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 px-6 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent-500/25 transition-all duration-300 hover:bg-accent-400"
                 >
                   {t("common.send")} <Send className="h-4 w-4" />
                 </button>
@@ -81,17 +81,17 @@ export function Contact() {
                     key={item.label}
                     className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6"
                   >
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-400">
+                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-ink-900 text-accent-400">
                       <item.icon className="h-6 w-6" />
                     </div>
                     <div>
                       <div className="text-sm font-medium text-slate-500">{item.label}</div>
                       {item.href ? (
-                        <a href={item.href} className="text-lg font-semibold text-navy-900 hover:text-gold-600">
+                        <a href={item.href} className="text-lg font-semibold text-ink-900 hover:text-accent-600">
                           {item.value}
                         </a>
                       ) : (
-                        <div className="text-lg font-semibold text-navy-900">{item.value}</div>
+                        <div className="text-lg font-semibold text-ink-900">{item.value}</div>
                       )}
                     </div>
                   </div>

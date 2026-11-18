@@ -26,7 +26,7 @@ export function Academy() {
         subtitle={t('academy.subtitle')}
         breadcrumb={`${t('footer.company')} · ${title}`}
       />
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           {settingsLoading ? (
             <div className="space-y-4">
@@ -53,7 +53,7 @@ export function Academy() {
       <section className="border-t border-slate-100 bg-slate-50/50 py-20 lg:py-28">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           {quizLoading ? (
-            <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-8">
+            <div className="space-y-4 rounded-2xl border border-slate-200 bg-cream p-8">
               <Skeleton className="mx-auto h-8 w-48" />
               <Skeleton className="h-4 w-full" />
               <Skeleton className="mx-auto mt-6 h-10 w-36" />

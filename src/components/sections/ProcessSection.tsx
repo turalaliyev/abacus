@@ -39,7 +39,7 @@ export function ProcessSection() {
           />
           <motion.div
             style={{ scaleX: lineScale }}
-            className="absolute left-0 right-0 top-[3.25rem] hidden h-px origin-left bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 lg:block"
+            className="absolute left-0 right-0 top-[3.25rem] hidden h-px origin-left bg-gradient-to-r from-accent-600 via-accent-400 to-accent-300 lg:block"
             aria-hidden
           />
 
@@ -59,11 +59,11 @@ export function ProcessSection() {
                 }}
                 className="group relative"
               >
-                <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-300 hover:shadow-[var(--shadow-card-hover)]">
-                  <span className="mb-5 grid h-14 w-14 place-items-center rounded-full border border-gold-300/60 bg-white font-serif text-xl font-bold text-gold-600 shadow-sm transition-colors duration-500 group-hover:bg-gold-500 group-hover:text-navy-950">
+                <div className="relative flex h-full flex-col rounded-2xl border border-slate-200 bg-cream p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-accent-300 hover:shadow-[var(--shadow-card-hover)]">
+                  <span className="mb-5 grid h-14 w-14 place-items-center rounded-full border border-accent-300/60 bg-cream font-serif text-xl font-bold text-accent-600 shadow-sm transition-colors duration-500 group-hover:bg-accent-500 group-hover:text-ink-950">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-lg font-semibold text-navy-900">{step.title}</h3>
+                  <h3 className="text-lg font-semibold text-ink-900">{step.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
                 </div>
               </motion.li>

@@ -26,7 +26,7 @@ export function SectionTitle({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={inView}
           transition={{ duration: 0.5, ease: EASE }}
-          className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-gold-600"
+          className="eyebrow mb-4"
         >
           {eyebrow}
         </motion.span>
@@ -35,8 +35,8 @@ export function SectionTitle({
       <RevealText
         as="h2"
         text={title}
-        className={`text-3xl font-bold tracking-tight md:text-4xl ${
-          light ? "text-white" : "text-navy-900"
+        className={`text-[34px] font-medium leading-[1.05] tracking-[-0.03em] md:text-[44px] ${
+          light ? "text-white" : "text-ink-900"
         }`}
       />
 
@@ -59,7 +59,7 @@ export function SectionTitle({
         whileInView={{ scaleX: 1 }}
         viewport={inView}
         transition={{ duration: 0.7, delay: 0.35, ease: EASE }}
-        className={`mt-5 h-1 w-16 origin-left rounded-full bg-gradient-to-r from-gold-600 to-gold-300 ${
+        className={`mt-5 h-1 w-16 origin-left rounded-full bg-gradient-to-r from-accent-600 to-accent-300 ${
           centered ? "mx-auto" : ""
         }`}
       />
