@@ -24,6 +24,7 @@ import {
   OG_IMAGE,
   SITE_URL,
   allRoutes,
+  blogPostSeo,
   jsonLdForPage,
 } from '../src/lib/seo.ts'
 import { navItems, siteConfig } from '../src/data/content.ts'
@@ -121,6 +122,7 @@ function fallbackBody(seo) {
         <main>
           <h1>${esc(seo.title.replace(/\s*\|\s*Abacus Audit$/, ''))}</h1>
           <p>${esc(seo.description)}</p>
+          ${seo.body ? `<article>${seo.body}</article>` : ''}
         </main>
         <footer>
           <p>${esc(siteConfig.legalName)}</p>
@@ -203,10 +205,46 @@ async function fetchFaq() {
   }
 }
 
+/** Published CMS articles, so each gets its own prerendered head and body. */
+async function fetchBlogPosts() {
+  const url = process.env.VITE_SUPABASE_URL
+  const key = process.env.VITE_SUPABASE_ANON_KEY
+  if (!url || !key) return []
+
+  try {
+    const res = await fetch(
+      `${url}/rest/v1/blog_posts?select=*&is_published=eq.true&order=published_at.desc`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` } },
+    )
+    if (!res.ok) return []
+    const rows = await res.json()
+    return Array.isArray(rows) ? rows : []
+  } catch {
+    return []
+  }
+}
+
+/** Mirrors localizeBlogPost in src/lib/localize.ts, with Azerbaijani as the default. */
+function blogRouteFromRow(row) {
+  const pick = (i18n, fallback) => i18n?.az || fallback || ''
+  const seo = blogPostSeo({
+    slug: row.slug,
+    title: pick(row.title_i18n, row.title),
+    excerpt: pick(row.excerpt_i18n, row.excerpt),
+    category: pick(row.category_i18n, row.category),
+    cover_image_url: row.cover_image_url,
+    published_at: row.published_at,
+    post_type: row.post_type,
+  })
+  return { ...seo, body: pick(row.content_i18n, row.content) }
+}
+
 async function main() {
   const shellPath = join(dist, 'index.html')
   const shell = await readFile(shellPath, 'utf8')
-  const routes = allRoutes()
+  const blogRoutes = (await fetchBlogPosts()).map(blogRouteFromRow)
+  const routes = [...allRoutes(), ...blogRoutes]
+  console.log(`SEO: ${blogRoutes.length} published blog articles`)
 
   const faq = await fetchFaq()
   console.log(faq ? `SEO: FAQ schema from CMS (${faq.length})` : 'SEO: FAQ schema from static fallback')

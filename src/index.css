@@ -207,6 +207,34 @@
   letter-spacing: -0.015em;
 }
 
+.rich-text h1 {
+  margin: 2rem 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #111116;
+  letter-spacing: -0.03em;
+}
+
+.rich-text h4 {
+  margin: 1.25rem 0 0.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111116;
+}
+
+.rich-text h5 {
+  margin: 1rem 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #111116;
+}
+
 .rich-text h3 {
   margin: 1.5rem 0 0.5rem;
   font-family: var(--font-serif);

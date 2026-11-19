@@ -43,6 +43,8 @@ export type PageSeo = {
    * still read it, and used as the page's search-intent checklist.
    */
   keywords?: readonly string[]
+  /** Raw CMS HTML rendered into the crawlable fallback (blog posts only). */
+  body?: string
 }
 
 /* ------------------------------------------------------------------ */
@@ -446,4 +448,58 @@ export function jsonLdForPage(
     blocks.push(...seo.jsonLd)
   }
   return blocks
+}
+
+/* ------------------------------------------------------------------ */
+/* Blog posts                                                          */
+/* ------------------------------------------------------------------ */
+
+export type BlogSeoInput = {
+  slug: string
+  title: string
+  excerpt: string
+  category?: string
+  cover_image_url?: string
+  published_at: string
+  post_type: 'xeberler' | 'qanunvericilik'
+}
+
+/** SEO for one published post at /bloq/:slug. */
+export function blogPostSeo(post: BlogSeoInput): PageSeo {
+  const path = `/bloq/${post.slug}`
+  const canonical = `${SITE_URL}${path}`
+  const section =
+    post.post_type === 'qanunvericilik'
+      ? { name: 'Qanunvericilik', path: '/bloq/qanunvericilik' }
+      : { name: 'Xəbərlər', path: '/bloq/xeberler' }
+  const image = post.cover_image_url || undefined
+  const description = (post.excerpt || post.title).slice(0, 300)
+
+  return {
+    path,
+    title: t(post.title),
+    description,
+    image,
+    keywords: [post.title, post.category ? `${post.category} Azərbaycan` : '', ...CORE_KEYWORDS].filter(Boolean),
+    breadcrumb: [
+      { name: 'Bloq', path: '/bloq' },
+      section,
+      { name: post.title, path },
+    ],
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description,
+        datePublished: post.published_at,
+        dateModified: post.published_at,
+        inLanguage: 'az',
+        image,
+        mainEntityOfPage: canonical,
+        author: { '@type': 'Organization', name: siteConfig.name, '@id': `${SITE_URL}/#organization` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      },
+    ],
+  }
 }

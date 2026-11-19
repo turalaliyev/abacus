@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { useCrud } from '../hooks/useCrud'
 import { PageHeader, MediaUrlInput } from '../components/MediaUrlInput'
-import { I18nInput, I18nTextArea } from '../components/I18nFields'
+import { I18nInput, I18nRichText, I18nTextArea } from '../components/I18nFields'
 import { prepareI18nSave, rowToFormI18n } from '../lib/i18nForm'
 import type { BlogPost } from '../types/database'
 
@@ -66,13 +66,13 @@ export function BlogPage() {
           },
         ]}
       />
-      <Modal title={editing ? t('common.edit') : t('common.add')} open={open} onCancel={() => setOpen(false)} onOk={onSave} width={720}>
+      <Modal title={editing ? t('common.edit') : t('common.add')} open={open} onCancel={() => setOpen(false)} onOk={onSave} width={900}>
         <Form form={form} layout="vertical" className="mt-4">
           <p className="mb-3 text-xs text-slate-500">{t('common.contentLang')}</p>
           <Form.Item name="slug" label={t('common.slug')} rules={[{ required: true }]}><Input disabled={!!editing} /></Form.Item>
           <Form.Item name="title_i18n" label={t('common.title')} rules={[{ required: true }]}><I18nInput /></Form.Item>
           <Form.Item name="excerpt_i18n" label="Qısa təsvir" rules={[{ required: true }]}><I18nTextArea rows={2} /></Form.Item>
-          <Form.Item name="content_i18n" label="Məzmun"><I18nTextArea rows={6} /></Form.Item>
+          <Form.Item name="content_i18n" label="Məzmun"><I18nRichText /></Form.Item>
           <div className="grid gap-4 md:grid-cols-2">
             <Form.Item name="category_i18n" label="Kateqoriya"><I18nInput /></Form.Item>
             <Form.Item name="post_type" label="Tip" rules={[{ required: true }]}>

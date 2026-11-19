@@ -11,6 +11,7 @@ import { Partners } from "./pages/Partners"
 import { Services } from "./pages/Services"
 import { ServiceDetail } from "./pages/ServiceDetail"
 import { Blog } from "./pages/Blog"
+import { BlogPost } from "./pages/BlogPost"
 import { Academy } from "./pages/Academy"
 import { Calculator } from "./pages/Calculator"
 import { Contact } from "./pages/Contact"
@@ -38,6 +39,7 @@ function PublicSite() {
           <Route path="/bloq" element={<Blog variant="xeberler" />} />
           <Route path="/bloq/xeberler" element={<Blog variant="xeberler" />} />
           <Route path="/bloq/qanunvericilik" element={<Blog variant="qanunvericilik" />} />
+          <Route path="/bloq/:slug" element={<BlogPost />} />
           <Route path="/akademiya" element={<Academy />} />
           <Route path="/akademiya/*" element={<Navigate to="/akademiya" replace />} />
           <Route path="/kalkulyator" element={<Calculator />} />

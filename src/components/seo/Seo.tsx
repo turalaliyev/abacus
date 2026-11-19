@@ -6,11 +6,12 @@ import {
   LOCALES,
   OG_IMAGE,
   SITE_URL,
+  blogPostSeo,
   getSeoForPath,
   jsonLdForPage,
 } from '../../lib/seo'
 import { siteConfig } from '../../data/content'
-import { useLocalizedFaqItems } from '../../hooks/useLocalizedData'
+import { useLocalizedBlogPosts, useLocalizedFaqItems } from '../../hooks/useLocalizedData'
 
 /**
  * Keeps <head> in sync during client-side navigation.
@@ -56,8 +57,19 @@ export function Seo() {
   const locale = i18n.language
   const { data: faqItems } = useLocalizedFaqItems()
 
+  // Article pages (/bloq/:slug) take their head from the CMS row, not the
+  // static route table. The two bloq index pages are static routes.
+  const blogSlug = /^\/bloq\/([^/]+)$/.exec(pathname.replace(/\/$/, ''))?.[1]
+  const isBlogArticle = Boolean(blogSlug) && blogSlug !== 'xeberler' && blogSlug !== 'qanunvericilik'
+  const { data: blogPosts } = useLocalizedBlogPosts()
+  const blogPost = isBlogArticle ? blogPosts?.find((p) => p.slug === blogSlug) : undefined
+  // Until the posts arrive we cannot tell a real article from a dead slug, so
+  // leave the head alone rather than flash a noindex title.
+  const awaitingBlog = isBlogArticle && !blogPosts
+
   useEffect(() => {
-    const seo = getSeoForPath(pathname)
+    if (awaitingBlog) return
+    const seo = blogPost ? blogPostSeo(blogPost) : getSeoForPath(pathname)
     const canonical = `${SITE_URL}${seo.path === '/' ? '/' : seo.path}`
     const image = seo.image ?? OG_IMAGE
 
@@ -119,7 +131,7 @@ export function Seo() {
     // Pass the FAQ the page is actually rendering so the markup can't drift
     // from the visible content.
     setJsonLd(jsonLdForPage(seo, { faq: faqItems }))
-  }, [pathname, locale, faqItems])
+  }, [pathname, locale, faqItems, blogPost, awaitingBlog])
 
   return null
 }

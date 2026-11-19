@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { CalendarDays, ArrowUpRight } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { PageHeader } from "../components/ui/PageHeader"
@@ -36,6 +37,7 @@ export function Blog({ variant = "xeberler" }: BlogProps) {
                 const cover = post.cover_image_url || defaultCover
                 return (
                   <StaggerItem key={post.id}>
+                    <Link to={`/bloq/${post.slug}`} className="block h-full">
                     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-cream transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-900 to-ink-700">
                         {cover ? (
@@ -69,6 +71,7 @@ export function Blog({ variant = "xeberler" }: BlogProps) {
                         </span>
                       </div>
                     </article>
+                    </Link>
                   </StaggerItem>
                 )
               })}
